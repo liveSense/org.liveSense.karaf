@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+      <groupId>org.liveSense</groupId>
+      <artifactId>org.liveSense.parent</artifactId>
+      <version>1-SNAPSHOT</version>
+  </parent>
+  <scm>
+      <connection>scm:git:git://github.com/liveSense/org.liveSense.launchpad.git</connection>
+      <developerConnection>scm:git:git://github.com/liveSense/org.liveSense.launchpad.git</developerConnection>
+      <url>https://github.com/liveSense/org.liveSense.launchpad</url>
+  </scm>  
+  
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.liveSense.launchpad</artifactId>
+	<packaging>pom</packaging>
+
+	<version>1.0.0-SNAPSHOT</version>
+	<name>liveSense :: Karaf</name>
+	<description>liveSense KAR archive</description>
+
+    <build>
+        <plugins>
+            <!-- Karaf Features installation  -->
+            <plugin>
+	         <artifactId>maven-resources-plugin</artifactId>
+	         <version>2.4.3</version>
+	         <executions>
+	           <execution>
+	             <id>copy-resources</id>
+	             <phase>validate</phase>
+	             <goals>
+	               <goal>copy-resources</goal>
+	             </goals>
+	             <configuration>
+	               <outputDirectory>${basedir}/target</outputDirectory>
+	               <resources>
+	                 <resource>
+	                   <directory>src/main/bundles</directory>
+	                  	<includes>
+          					<include>features.xml</include>
+	                   </includes>
+	                   <filtering>true</filtering>
+	                 </resource>
+	               </resources>
+	             </configuration>
+	           </execution>
+	         </executions>
+	       </plugin>
+            <plugin>
+            		<groupId>org.codehaus.mojo</groupId>
+		         <artifactId>build-helper-maven-plugin</artifactId>
+		         <executions>
+		           <execution>
+		             <id>attach-artifacts</id>
+		             <phase>package</phase>
+		             <goals>
+		               <goal>attach-artifact</goal>
+		             </goals>
+		             <configuration>
+		               <artifacts>
+		                 <artifact>
+		                   <file>target/features.xml</file>
+		                   <type>xml</type>
+		                   <classifier>features</classifier>
+		                 </artifact>
+		               </artifacts>
+		             </configuration>
+		           </execution>
+		         </executions>
+		       </plugin>
+		       
+		       <!-- Create Karaf KAR -->
+		      <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>features-maven-plugin</artifactId>
+                <version>2.2.7</version>
+                <executions>
+                    <execution>
+                        <id>create-kar</id>
+                        <goals>
+                            <goal>create-kar</goal>
+                        </goals>
+                        <configuration>
+                            <featuresFile>src/main/bundles/features.xml</featuresFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>OPS4J</id>
+            <name>OPS4J Repository</name>
+            <url>http://repository.ops4j.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+                <id>Apache Snapshots</id>
+                <url>https://repository.apache.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+</project>
+
+
+
+
+
+
+
+
+
+
+
