@@ -95,7 +95,7 @@
                             <goal>create-kar</goal>
                         </goals>
                         <configuration>
-                            <featuresFile>src/main/bundles/features.xml</featuresFile>
+                            <featuresFile>${project.build.directory}/features.xml</featuresFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -120,24 +120,6 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>OPS4J</id>
-            <name>OPS4J Repository</name>
-            <url>http://repository.ops4j.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-                <id>Apache Snapshots</id>
-                <url>https://repository.apache.org/content/repositories/snapshots</url>
-        </repository>
-    </repositories>
 </project>
 
 
