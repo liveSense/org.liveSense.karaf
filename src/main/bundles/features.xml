@@ -44,7 +44,7 @@
     <bundle>mvn:commons-digester/commons-digester/2.1</bundle>
     <bundle>mvn:commons-pool/commons-pool/1.5.4</bundle>
     <bundle>mvn:commons-dbcp/commons-dbcp/1.4</bundle>
-    <bundle>mvn:commons-codec/commons-codec/1.4</bundle>
+    <bundle>mvn:commons-codec/commons-codec/1.6</bundle>
     <bundle>mvn:commons-pool/commons-pool/1.5.6</bundle>
     <bundle>mvn:commons-dbutils/commons-dbutils/1.3</bundle>
     <bundle>mvn:net.sf.transmorph/transmorph/3.1.1</bundle>
@@ -74,9 +74,9 @@
 	    <bundle>mvn:org.liveSense/org.liveSense.jdbc.mysql/5.1.18_1-SNAPSHOT</bundle>
 	</feature>
 
-	<feature name="org.liveSense.jdbc.jaybird" version="2.2.0-beta_1_1-SNAPSHOT" >
+	<feature name="org.liveSense.jdbc.jaybird" version="2.2.0-beta-1_1-SNAPSHOT" >
 		<feature>org.liveSense.commons</feature>
-	    <bundle>mvn:org.liveSense/org.liveSense.jdbc.jaybird/2.2.0-beta_1_1-SNAPSHOT</bundle>
+	    <bundle>mvn:org.liveSense/org.liveSense.jdbc.jaybird/2.2.0-beta-1_1-SNAPSHOT</bundle>
 	</feature>
 
 	<feature name="org.apache.sling" version="2.0">
