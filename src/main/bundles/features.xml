@@ -124,7 +124,8 @@
 	    <bundle>mvn:org.apache.sling/org.apache.sling.jcr.base/${sling.jcr.base.version}</bundle>
 	    <bundle>mvn:org.apache.jackrabbit/jackrabbit-api/${jackrabbit.version}</bundle>
 	    <bundle>mvn:org.apache.derby/derby/10.8.1.2</bundle>
-	    <bundle>mvn:org.apache.tika/tika-bundle/0.9</bundle>
+	    <bundle>mvn:org.apache.tika/tika-core/1.1</bundle>
+	    <bundle>mvn:org.apache.tika/tika-bundle/1.1</bundle>
 	    <bundle>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.server/${sling.jcr.jackrabbit.server.version}</bundle>
 	    <bundle>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.usermanager/${sling.jcr.jackrabbit.usermanager.version}</bundle>
 	    <bundle>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.accessmanager/${sling.jcr.jackrabbit.accessmanager.version}</bundle>
@@ -183,6 +184,7 @@
 	    <bundle>mvn:org.liveSense/org.liveSense.misc.jcrom/${liveSense.misc.jcrom.version}</bundle>
 	    <bundle>mvn:org.liveSense/org.liveSense.misc.jsr303/${liveSense.misc.jsr303.version}</bundle>
 	    <bundle>mvn:org.liveSense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.version}</bundle>
+	    <bundle>mvn:org.liveSense/org.liveSense.misc.queryBuilder.gwt/${liveSense.misc.queryBuilder.gwt.version}</bundle>
 	    <bundle>mvn:org.liveSense/org.liveSense.misc.configurationLoader/${liveSense.misc.configurationLoader.version}</bundle>
 	</feature>
 
@@ -203,6 +205,7 @@
 	    <feature>org.apache.sling</feature>
 	    <feature>org.liveSense.core</feature>
 	    <bundle>mvn:org.liveSense/org.liveSense.framework.gwt/${liveSense.framework.gwt.version}</bundle>
+	    <bundle>mvn:org.liveSense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.gwt.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.framework.gxt" version="${gxt.version}" >
