@@ -150,7 +150,7 @@
 
         <feature>http</feature>
         <bundle>mvn:org.apache.felix/org.apache.felix.metatype/1.0.4</bundle>
-	    <bundle>mvn:hu.libra/hu.libra.libraweb.webconsole.branding/1.0.0-SNAPSHOT</bundle>
+	    <!--<bundle>mvn:org.liveSense/org.liveSense.webconsole.branding/1.0.0-SNAPSHOT</bundle>-->
         <bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.console/${karaf.version}</bundle>
     </feature>
 
@@ -213,6 +213,12 @@
 	    <feature>org.liveSense.misc</feature>
 	    <feature>org.liveSense.core</feature>
 	    <bundle>mvn:org.liveSense/org.liveSense.framework.gxt/${liveSense.framework.gxt.version}</bundle>
+	</feature>
+
+	<feature name="org.liveSense.framework.apacheds" version="${apacheds.version}" >
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ehcache/2.5.2_1</bundle>
+        <bundle>mvn:org.apache.mina/mina-core/2.0.4</bundle>
+	    <bundle>mvn:org.liveSense/org.liveSense.framework.apacheds/${liveSense.framework.apacheds.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.services" version="1.0.0-SNAPSHOT" >
