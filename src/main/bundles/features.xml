@@ -71,12 +71,12 @@
 
 	<feature name="org.liveSense.jdbc.mysql" version="5.1.18_1-SNAPSHOT">
 		<feature>org.liveSense.commons</feature>
-		<bundle>mvn:org.liveSense/org.liveSense.jdbc.mysql/5.1.18_1-SNAPSHOT</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.jdbc.mysql/5.1.18_1-SNAPSHOT</bundle>
 	</feature>
 
 	<feature name="org.liveSense.jdbc.jaybird" version="2.2.0-beta-1_1-SNAPSHOT">
 		<feature>org.liveSense.commons</feature>
-		<bundle>mvn:org.liveSense/org.liveSense.jdbc.jaybird/2.2.0-beta-1_1-SNAPSHOT</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.jdbc.jaybird/2.2.0-beta-1_1-SNAPSHOT</bundle>
 	</feature>
 
 	<feature name="org.apache.sling" version="2.0">
@@ -150,7 +150,7 @@
 
 		<feature>http</feature>
 		<bundle>mvn:org.apache.felix/org.apache.felix.metatype/1.0.4</bundle>
-		<!--<bundle>mvn:org.liveSense/org.liveSense.webconsole.branding/1.0.0-SNAPSHOT</bundle> -->
+		<!--<bundle>mvn:com.github.livesense/org.liveSense.webconsole.branding/1.0.0-SNAPSHOT</bundle> -->
 		<bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.console/${karaf.version}</bundle>
 	</feature>
 
@@ -171,72 +171,72 @@
 	</feature>
 
 	<feature name="org.liveSense.core" version="1.0.0-SNAPSHOT">
-		<bundle>mvn:org.liveSense/org.liveSense.fragment.sun.misc/${liveSense.fragment.sun.misc.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.core/${liveSense.core.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.fragment.sun.misc/${liveSense.fragment.sun.misc.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.core/${liveSense.core.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.misc" version="1.0.0-SNAPSHOT">
 		<feature>org.apache.sling</feature>
 		<feature>org.liveSense.core</feature>
 		<feature>org.liveSense.framework.gwt</feature>
-		<bundle>mvn:org.liveSense/org.liveSense.misc.i18n/${liveSense.misc.i18n.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.misc.javax.persistence/${liveSense.misc.javax.persistence.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.misc.jcrom/${liveSense.misc.jcrom.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.misc.jsr303/${liveSense.misc.jsr303.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.misc.queryBuilder.gwt/${liveSense.misc.queryBuilder.gwt.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.misc.configurationLoader/${liveSense.misc.configurationLoader.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.i18n/${liveSense.misc.i18n.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.javax.persistence/${liveSense.misc.javax.persistence.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.jcrom/${liveSense.misc.jcrom.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.jsr303/${liveSense.misc.jsr303.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.queryBuilder.gwt/${liveSense.misc.queryBuilder.gwt.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.configurationLoader/${liveSense.misc.configurationLoader.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.jsp.taglibs" version="1.0.0-SNAPSHOT">
 		<feature>org.apache.sling</feature>
-		<bundle>mvn:org.liveSense/org.liveSense.scripting.jsp.taglib.jstl/${liveSense.scripting.jsp.taglib.jstl.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.scripting.jsp.taglib.json/${liveSense.scripting.jsp.taglib.json.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.jstl/${liveSense.scripting.jsp.taglib.jstl.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.json/${liveSense.scripting.jsp.taglib.json.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.framework.cxf" version="${cxf.version}">
 		<feature>org.apache.sling</feature>
 		<feature>org.liveSense.misc</feature>
 		<feature>org.liveSense.core</feature>
-		<bundle>mvn:org.liveSense/org.liveSense.framework.cxf/${liveSense.framework.cxf.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.framework.cxf/${liveSense.framework.cxf.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.framework.gwt" version="${gwt.version}">
 		<feature>org.apache.sling</feature>
 		<feature>org.liveSense.core</feature>
-		<bundle>mvn:org.liveSense/org.liveSense.framework.gwt/${liveSense.framework.gwt.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.gwt.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.framework.gwt/${liveSense.framework.gwt.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.gwt.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.framework.gxt" version="${gxt.version}">
 		<feature>org.apache.sling</feature>
 		<feature>org.liveSense.misc</feature>
 		<feature>org.liveSense.core</feature>
-		<bundle>mvn:org.liveSense/org.liveSense.framework.gxt/${liveSense.framework.gxt.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.framework.gxt/${liveSense.framework.gxt.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.framework.apacheds" version="${apacheds.version}">
 		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ehcache/2.5.2_1</bundle>
 		<bundle>mvn:org.apache.mina/mina-core/2.0.4</bundle>
 		<bundle>mvn:org.bouncycastle/bcprov-jdk16/1.46</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.framework.apacheds/${liveSense.framework.apacheds.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.framework.apacheds/${liveSense.framework.apacheds.version}</bundle>
 	</feature>
 
 	<feature name="org.liveSense.services" version="1.0.0-SNAPSHOT">
 		<feature>org.apache.sling</feature>
 		<feature>org.liveSense.misc</feature>
 		<feature>org.liveSense.core</feature>
-		<bundle>mvn:org.liveSense/org.liveSense.service.activation/${liveSense.service.activation.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.captha/${liveSense.service.captha.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.dataSourceProvider/${liveSense.service.dataSourceProvider.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.email/${liveSense.service.email.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.languageSelector/${liveSense.service.languageSelector.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.report.jasper/${liveSense.service.report.jasper.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.securityManager/${liveSense.service.securityManager.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.thumbnailGenerator/${liveSense.service.thumbnailGenerator.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.xssRemove/${liveSense.service.xssRemove.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.solr/${liveSense.service.solr.version}</bundle>
-		<bundle>mvn:org.liveSense/org.liveSense.service.solr.configurationLoader/${liveSense.service.solr.configurationLoader.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.activation/${liveSense.service.activation.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.captha/${liveSense.service.captha.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.dataSourceProvider/${liveSense.service.dataSourceProvider.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.email/${liveSense.service.email.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.languageSelector/${liveSense.service.languageSelector.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.report.jasper/${liveSense.service.report.jasper.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.securityManager/${liveSense.service.securityManager.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.thumbnailGenerator/${liveSense.service.thumbnailGenerator.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.xssRemove/${liveSense.service.xssRemove.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.solr/${liveSense.service.solr.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.solr.configurationLoader/${liveSense.service.solr.configurationLoader.version}</bundle>
 	</feature>
 
 </features>
