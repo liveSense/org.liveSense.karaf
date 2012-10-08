@@ -111,7 +111,8 @@
 		<bundle>mvn:org.apache.sling/org.apache.sling.scripting.jsp/${sling.scripting.jsp.version}</bundle>
 		<bundle>mvn:org.apache.sling/org.apache.sling.scripting.jsp.taglib/${sling.scripting.jsp.taglib.version}</bundle>
 		<bundle>mvn:org.codehaus.groovy/groovy-all/1.8.2</bundle>
-		<!-- <bundle>mvn:org.apache.sling/org.apache.sling.launchpad.installer/${sling.launchpad.installer.version}</bundle> -->
+		<bundle>mvn:org.apache.sling/org.apache.sling.launchpad.api/${sling.launchpad.api.version}</bundle>
+		<bundle>mvn:org.apache.sling/org.apache.sling.launchpad.installer/${sling.launchpad.installer.version}</bundle>
 		<bundle>mvn:org.apache.sling/org.apache.sling.installer.core/${sling.installer.core.version}</bundle>
 		<bundle>mvn:org.apache.sling/org.apache.sling.installer.provider.file/${sling.installer.provider.file.version}</bundle>
 		<bundle>mvn:org.apache.sling/org.apache.sling.installer.provider.jcr/${sling.installer.provider.jcr.version}</bundle>
