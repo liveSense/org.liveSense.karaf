@@ -238,6 +238,7 @@
 		<bundle>mvn:com.github.livesense/org.liveSense.service.thumbnailGenerator/${liveSense.service.thumbnailGenerator.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.xssRemove/${liveSense.service.xssRemove.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.solr/${liveSense.service.solr.version}</bundle>
+        <bundle>mvn:org.apache.zookeeper/zookeeper/3.4.4</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.solr.configurationLoader/${liveSense.service.solr.configurationLoader.version}</bundle>
 	</feature>
 
