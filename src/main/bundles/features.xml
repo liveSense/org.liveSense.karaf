@@ -229,7 +229,7 @@
 		<feature>org.liveSense.misc</feature>
 		<feature>org.liveSense.core</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.activation/${liveSense.service.activation.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.captha/${liveSense.service.captha.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.captcha/${liveSense.service.captcha.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.dataSourceProvider/${liveSense.service.dataSourceProvider.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.email/${liveSense.service.email.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.languageSelector/${liveSense.service.languageSelector.version}</bundle>
