@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<features name='org.liveSense' xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+<features name='liveSense-1.0.0-SNAPSHOT' xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
 
+<!--
 	<feature name="org.springframework" version="${spring.version}">
 		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aopalliance/1.0_3</bundle>
 		<bundle>mvn:org.springframework/spring-asm/${spring.version}</bundle>
@@ -30,58 +31,182 @@
 		<bundle>mvn:org.activiti/activiti-engine/${activiti.version}</bundle>
 		<bundle>mvn:org.activiti/activiti-osgi/${activiti.version}</bundle>
 	</feature>
+-->
 
-
-	<feature name='org.liveSense.commons' version="1.0.0-SNAPSHOT">
+	<feature name='liveSense-commons' version="1.0.0-SNAPSHOT">
+		<feature version="[2,3)">http</feature>
 		<feature>eventadmin</feature>
-		<feature>http</feature>
-		<feature>http-whiteboard</feature>
-		<bundle>mvn:commons-io/commons-io/1.4</bundle>
-		<bundle>mvn:commons-fileupload/commons-fileupload/1.2.2</bundle>
-		<bundle>mvn:commons-collections/commons-collections/3.2.1</bundle>
-		<bundle>mvn:commons-lang/commons-lang/2.4</bundle>
-		<bundle>mvn:commons-beanutils/commons-beanutils/1.8.3</bundle>
-		<bundle>mvn:commons-digester/commons-digester/2.1</bundle>
-		<bundle>mvn:commons-pool/commons-pool/1.5.4</bundle>
-		<bundle>mvn:commons-dbcp/commons-dbcp/1.4</bundle>
-		<bundle>mvn:commons-codec/commons-codec/1.6</bundle>
-		<bundle>mvn:commons-pool/commons-pool/1.5.6</bundle>
-		<bundle>mvn:commons-dbutils/commons-dbutils/1.3</bundle>
-		<bundle>mvn:com.ibm.icu/icu4j/49.1</bundle>
-		<bundle>mvn:net.sf.transmorph/transmorph/3.1.1</bundle>
-		<bundle>mvn:com.googlecode.guava-osgi/guava-osgi/10.0.0</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-codec/1.3_2</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-httpclient/3.1_6</bundle>
-		<bundle>mvn:org.apache.httpcomponents/httpcore-osgi/4.1.2</bundle>
-		<bundle>mvn:org.apache.httpcomponents/httpclient-osgi/4.1.2</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xalan/2.7.1_4</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.bcel/5.2_4</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xerces/2.10.0_1</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlresolver/1.2_4</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.kxml2/2.3.0_2</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xstream/1.4.1_1</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlpull/1.1.3.1_2</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xpp3/1.1.4c_5</bundle>
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.freemarker/2.3.18_1</bundle>
+		<bundle start-level="30">mvn:org.apache.felix/org.apache.felix.scr/1.6.0</bundle>
+		<bundle start-level="20">mvn:commons-io/commons-io/1.4</bundle>
+		<bundle start-level="20">mvn:commons-fileupload/commons-fileupload/1.2.2</bundle>
+		<bundle start-level="20">mvn:commons-collections/commons-collections/3.2.1</bundle>
+		<bundle start-level="20">mvn:commons-lang/commons-lang/2.6</bundle>
+		<bundle start-level="20">mvn:commons-beanutils/commons-beanutils/1.8.3</bundle>
+		<bundle start-level="20">mvn:commons-digester/commons-digester/2.1</bundle>
+		<bundle start-level="20">mvn:commons-pool/commons-pool/1.5.4</bundle>
+		<bundle start-level="20">mvn:commons-dbcp/commons-dbcp/1.4</bundle>
+		<bundle start-level="20">mvn:commons-codec/commons-codec/1.6</bundle>
+		<bundle start-level="20">mvn:commons-pool/commons-pool/1.5.6</bundle>
+		<bundle start-level="20">mvn:commons-dbutils/commons-dbutils/1.3</bundle>
+		<bundle start-level="20" dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-codec/1.3_2</bundle>
+		<bundle start-level="20" dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-httpclient/3.1_6</bundle>
+		<bundle start-level="20">mvn:org.apache.httpcomponents/httpcore-osgi/4.1.2</bundle>
+		<bundle start-level="20">mvn:org.apache.httpcomponents/httpclient-osgi/4.1.2</bundle>
+<!--
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xalan/2.7.1_4</bundle>
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.bcel/5.2_4</bundle>
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xerces/2.10.0_1</bundle>
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlresolver/1.2_4</bundle>
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.kxml2/2.3.0_2</bundle>
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xstream/1.4.1_1</bundle>
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlpull/1.1.3.1_2</bundle>
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xpp3/1.1.4c_5</bundle>
+		<bundle start-level='1'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.freemarker/2.3.18_1</bundle> -->
 		<!-- <bundle>mvn:org.glassfish/javax.mail/3.0-Preview</bundle> -->
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/2.1_3_4</bundle>
-		<bundle>mvn:org.apache.geronimo.specs/geronimo-j2ee-connector_1.5_spec/2.0.0</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.scr/1.6.0</bundle>
-
 	</feature>
 
-	<feature name="org.liveSense.jdbc.mysql" version="5.1.18_1-SNAPSHOT">
-		<feature>org.liveSense.commons</feature>
-		<bundle>mvn:com.github.livesense/org.liveSense.jdbc.mysql/5.1.18_1-SNAPSHOT</bundle>
+	<feature name='liveSense-framework-lucene' version="4.0.0_1-SNAPSHOT">
+		<feature>liveSense-commons</feature>
+		<bundle start-level="20">mvn:com.ibm.icu/icu4j/49.1</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-analyzers-common/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-analyzers-icu/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-analyzers-phonetic/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-analyzers-stempel/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-core/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-grouping/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-highlighter/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-memory/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-misc/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-queries/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-queryparser/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-spatial/${lucene.version}_1-SNAPSHOT</bundle>
+        <bundle start-level="52">mvn:com.github.livesense/lucene-suggest/${lucene.version}_1-SNAPSHOT</bundle>
+    </feature>
+
+	<feature name='liveSense-jackrabbit' version="2.4.0">
+		<feature>liveSense-commons</feature>
+        <bundle start-level="51">mvn:javax.jcr/jcr/2.0</bundle>
+<!-- 		<feature>liveSense-lucene</feature> -->
+        <bundle start-level="52">mvn:org.apache.jackrabbit/jackrabbit-api/${jackrabbit.version}</bundle>
+        <bundle start-level="52">mvn:org.apache.jackrabbit/jackrabbit-jcr-commons/${jackrabbit.version}</bundle>
+        <bundle start-level="52">mvn:org.apache.jackrabbit/jackrabbit-spi/${jackrabbit.version}</bundle>
+        <bundle start-level="52">mvn:org.apache.jackrabbit/jackrabbit-spi-commons/${jackrabbit.version}</bundle>
+        <bundle start-level="52">mvn:org.apache.jackrabbit/jackrabbit-jcr-rmi/${jackrabbit.version}</bundle>
+        <bundle start-level="52">mvn:org.apache.jackrabbit/jackrabbit-webdav/${jackrabbit.version}</bundle>
+    </feature>
+
+	<feature name="liveSense-jdbc-mysql" version="5.1.18_1-SNAPSHOT">
+		<feature>liveSense-commons</feature>
+		<bundle start-level="30">mvn:com.github.livesense/org.liveSense.jdbc.mysql/5.1.18_1-SNAPSHOT</bundle>
 	</feature>
 
-	<feature name="org.liveSense.jdbc.jaybird" version="2.2.0-beta-1_1-SNAPSHOT">
-		<feature>org.liveSense.commons</feature>
-		<bundle>mvn:com.github.livesense/org.liveSense.jdbc.jaybird/2.2.0-beta-1_1-SNAPSHOT</bundle>
+	<feature name="liveSense-jdbc-jaybird" version="2.2.0-beta-1_1-SNAPSHOT">
+		<feature>liveSense-commons</feature>
+		<bundle start-level="51">mvn:org.apache.geronimo.specs/geronimo-j2ee-connector_1.5_spec/2.0.0</bundle>
+		<bundle  start-level="30">mvn:com.github.livesense/org.liveSense.jdbc.jaybird/2.2.0_1-SNAPSHOT</bundle>
 	</feature>
 
-	<feature name="org.apache.sling" version="2.0">
-		<feature>org.liveSense.commons</feature>
+	<feature name="liveSense-jdbc-h2" version="1.3.166_1-SNAPSHOT">
+		<feature>liveSense-commons</feature>
+		<bundle  start-level="30">mvn:com.github.livesense/org.liveSense.jdbc.h2/1.3.166_1-SNAPSHOT</bundle>
+	</feature>
+
+    <feature name="liveSense-sling-commons" version="2.0">
+		<feature>eventadmin</feature>
+		<feature>liveSense-commons</feature>
+        <feature>liveSense-jackrabbit</feature>
+        <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.classloader/${sling.commons.classloader.version}</bundle>
+        <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.json/${sling.commons.json.version}</bundle>
+        <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.mime/${sling.commons.mime.version}</bundle>
+        <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.osgi/${sling.commons.osgi.version}</bundle>
+        <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.scheduler/${sling.commons.scheduler.version}</bundle>
+        <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.threads/${sling.commons.threads.version}</bundle>
+    </feature>
+
+
+
+    <feature name="liveSense-sling-api" version="2.0">
+        <feature>liveSense-sling-commons</feature>
+  		<bundle start-level='54'>mvn:org.apache.sling/org.apache.sling.api/${sling.api.version}</bundle>
+		<bundle start-level='54'>mvn:org.apache.sling/org.apache.sling.installer.api/${sling.installer.api.version}</bundle>
+		<bundle start-level='54'>mvn:org.apache.sling/org.apache.sling.jcr.api/${sling.jcr.api.version}</bundle>
+		<bundle start-level='54'>mvn:org.apache.sling/org.apache.sling.launchpad.api/${sling.launchpad.api.version}</bundle>
+		<bundle start-level='54'>mvn:org.apache.sling/org.apache.sling.scripting.api/${sling.scripting.api.version}</bundle>
+    </feature>
+
+    <feature name="liveSense-sling-core" version="2.0">
+        <feature>liveSense-sling-commons</feature>
+        <feature>liveSense-sling-api</feature>
+        <bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.adapter/${sling.adapter.version}</bundle>
+  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.auth.core/${sling.auth.core.version}</bundle>
+  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.event/${sling.event.version}</bundle>
+  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.installer.core/${sling.installer.core.version}</bundle>
+  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.jcr.base/${sling.jcr.base.version}</bundle>
+  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.resourceresolver/${sling.resourceresolver.version}</bundle>
+  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.scripting.core/${sling.scripting.core.version}</bundle>
+  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.settings/${sling.settings.version}</bundle>
+    </feature>
+
+    <feature name="liveSense-sling-installer" version="2.0">
+        <feature>liveSense-sling-commons</feature>
+        <feature>liveSense-sling-api</feature>
+        <feature>liveSense-sling-core</feature>
+  		<bundle start-level='56'>mvn:org.apache.sling/org.apache.sling.installer.console/${sling.installer.console.version}</bundle>
+  		<bundle start-level='56'>mvn:org.apache.sling/org.apache.sling.installer.provider.file/${sling.installer.provider.file.version}</bundle>
+  		<bundle start-level='56'>mvn:org.apache.sling/org.apache.sling.installer.provider.jcr/${sling.installer.provider.jcr.version}</bundle>
+  		<bundle start-level='56'>mvn:org.apache.sling/org.apache.sling.launchpad.installer/${sling.launchpad.installer.version}</bundle>
+    </feature>
+
+    <feature name="liveSense-sling-resource" version="2.0">
+        <feature>liveSense-sling-commons</feature>
+        <feature>liveSense-sling-api</feature>
+        <feature>liveSense-sling-core</feature>
+  		<bundle start-level='56'>mvn:org.apache.sling/org.apache.sling.bundleresource.impl/${sling.bundleresource.impl.version}</bundle>
+  		<bundle start-level='56'>mvn:org.apache.sling/org.apache.sling.fsresource/${sling.fsresource.version}</bundle>
+  		<bundle start-level='56'>mvn:org.apache.sling/org.apache.sling.jcr.resource/${sling.jcr.resource.version}</bundle>
+    </feature>
+
+    <feature name="liveSense-sling-engine" version="2.0">
+        <feature>liveSense-sling-commons</feature>
+        <feature>liveSense-sling-api</feature>
+        <feature>liveSense-sling-core</feature>
+        <feature>liveSense-sling-resource</feature>
+		<bundle start-level='57'>mvn:org.apache.derby/derby/10.8.1.2</bundle>
+		<bundle start-level='57'>mvn:org.apache.tika/tika-core/1.1</bundle>
+		<bundle start-level='57'>mvn:org.apache.tika/tika-bundle/1.1</bundle>
+  		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.engine/${sling.engine.version}</bundle>
+  		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.classloader/${sling.jcr.classloader.version}</bundle>
+  		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.contentloader/${sling.jcr.contentloader.version}</bundle>
+  		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.ocm/${sling.jcr.ocm.version}</bundle>
+  		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.servlets.get/${sling.servlets.get.version}</bundle>
+  		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.servlets.post/${sling.servlets.post.version}</bundle>
+  		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.servlets.resolver/${sling.servlets.resolver.version}</bundle>
+		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.server/${sling.jcr.jackrabbit.server.version}</bundle>
+		<!-- TODO: Selectable authentication provider -->
+		<bundle start-level='57'>mvn:com.github.livesense/org.liveSense.auth.ldap/${liveSense.auth.ldap.version}</bundle>
+		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.i18n/${sling.i18n.version}</bundle>
+		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.webdav/${sling.jcr.webdav.version}</bundle>
+		<!--
+		<bundle start-level='47'>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.usermanager/${sling.jcr.jackrabbit.usermanager.version}</bundle>
+		<bundle start-level='47'>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.accessmanager/${sling.jcr.jackrabbit.accessmanager.version}</bundle>
+		-->
+	</feature>
+
+    <feature name="liveSense-sling-scripting" version="2.0">
+        <feature>liveSense-sling-commons</feature>
+        <feature>liveSense-sling-api</feature>
+        <feature>liveSense-sling-core</feature>
+        <feature>liveSense-sling-resource</feature>
+        <feature>liveSense-sling-engine</feature>
+  		<bundle start-level='58'>mvn:org.apache.sling/org.apache.sling.scripting.javascript/${sling.scripting.javascript.version}</bundle>
+  		<bundle start-level='58'>mvn:org.apache.sling/org.apache.sling.scripting.jsp/${sling.scripting.jsp.version}</bundle>
+  		<bundle start-level='58'>mvn:org.apache.sling/org.apache.sling.scripting.jsp.taglib/${sling.scripting.jsp.taglib.version}</bundle>
+    </feature>
+
+<!--
+	<feature name="org.apache.sling.commons" version="2.0">
+		<feature>commons</feature>
+		<feature>org.liveSense.lucene</feature>
 		<bundle>mvn:org.apache.sling/org.apache.sling.commons.osgi/${sling.commons.osgi.version}</bundle>
 		<bundle>mvn:org.apache.sling/org.apache.sling.commons.mime/${sling.commons.mime.version}</bundle>
 		<bundle>mvn:org.apache.sling/org.apache.sling.commons.classloader/${sling.commons.classloader.version}</bundle>
@@ -142,104 +267,193 @@
 		<bundle>mvn:org.apache.sling.samples/org.apache.sling.samples.usermanager.ui/0.9-SNAPSHOT</bundle>
 		<bundle>mvn:org.apache.sling.samples/org.apache.sling.samples.accessmanager.ui/0.9-SNAPSHOT</bundle>
 	</feature>
+-->
 
-
-	<feature name="org.liveSense.webconsole.base" version="1.0.0-SNAPSHOT">
-		<config name="org.apache.karaf.webconsole">
-			realm=karaf
-			role=${karaf.admin.role}
-		</config>
-
-		<feature>http</feature>
-		<bundle>mvn:org.apache.felix/org.apache.felix.metatype/1.0.4</bundle>
-		<!--<bundle>mvn:com.github.livesense/org.liveSense.webconsole.branding/1.0.0-SNAPSHOT</bundle> -->
-		<bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.console/${karaf.version}</bundle>
+	<feature name="liveSense-webconsole-base" description="Base support of the liveSense WebConsole" version="1.0.0-SNAPSHPOT">
+		<feature>liveSense-commons</feature>
+		<bundle start-level='30'>mvn:de.twentyeleven.skysail/org.json-osgi/20080701</bundle>
+		<config name="org.apache.karaf.webconsole">realm=karaf role=${karaf.admin.role}</config>
+		<bundle start-level="30">mvn:org.apache.felix/org.apache.felix.metatype/1.0.4</bundle>
+		<!--<bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.console/${karaf.version}</bundle>-->
+		<bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole/4.0.0</bundle>
+		<!--<bundle start-level="30">mvn:org.apache.sling/org.apache.sling.jcr.webconsole/${sling.jcr.webconsole.version}</bundle> -->
 	</feature>
 
-	<feature name="org.liveSense.webconsole" version="1.0.0-SNAPSHOT">
-		<feature>org.apache.sling</feature>
-		<feature>org.liveSense.webconsole.base</feature>
-		<bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.admin/${karaf.version}</bundle>
-		<bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.features/${karaf.version}</bundle>
-		<bundle>mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.gogo/${karaf.version}</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.webconsole.plugins.event/1.0.2</bundle>
-		<bundle>mvn:org.apache.sling/org.apache.sling.extensions.webconsolesecurityprovider/${sling.extensions.webconsolesecurityprovider.version}</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.webconsole.plugins.event/1.0.2</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.webconsole.plugins.memoryusage/1.0.2</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.bundlerepository/1.6.6</bundle>
-		<bundle>mvn:org.apache.sling/org.apache.sling.extensions.threaddump/${sling.extensions.threaddump.version}</bundle>
-		<bundle>mvn:org.apache.sling/org.apache.sling.jcr.webconsole/${sling.jcr.webconsole.version}</bundle>
-		<bundle>mvn:org.apache.sling/org.apache.sling.extensions.explorer/${sling.extensions.explorer.version}</bundle>
+	<feature name="liveSense-webconsole" description="liveSense WebConsole for administration and monitoring" version="1.0.0-SNAPSHOT">
+		<feature version="1.0.0-SNAPSHPOT">liveSense-webconsole-base</feature>
+		<bundle start-level="30">mvn:com.github.livesense/org.liveSense.webconsole.branding/1.0.1-SNAPSHOT</bundle>
+		<bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.admin/${karaf.version}</bundle>
+		<bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.features/${karaf.version}</bundle>
+		<bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.gogo/${karaf.version}</bundle>
+		<bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.event/1.0.2</bundle>
+		<bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.memoryusage/1.0.2</bundle>
+		<bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.ds/1.0.0</bundle>
+<!--		<bundle start-level="30">mvn:org.apache.felix/org.apache.felix.bundlerepository/1.6.6</bundle> -->
 	</feature>
 
-	<feature name="org.liveSense.core" version="1.0.0-SNAPSHOT">
-		<bundle>mvn:com.github.livesense/org.liveSense.fragment.sun.misc/${liveSense.fragment.sun.misc.version}</bundle>
+	<feature name="liveSense-sling-webconsole" description="liveSense Sling WebConsole extensions" version="1.0.0-SNAPSHOT">
+		<feature>liveSense-sling-engine</feature>
+		<bundle start-level="70">mvn:org.apache.sling/org.apache.sling.extensions.threaddump/${sling.extensions.threaddump.version}</bundle>
+		<bundle start-level="70">mvn:org.apache.sling/org.apache.sling.jcr.webconsole/${sling.jcr.webconsole.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-core" version="1.0.0-SNAPSHOT">
+		<feature>liveSense-sling-engine</feature>
+		<bundle start-level="20">mvn:net.sf.transmorph/transmorph/3.1.1</bundle>
+		<bundle start-level="20">mvn:com.googlecode.guava-osgi/guava-osgi/10.0.0</bundle>
+		<bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/2.1_3_4</bundle>
+		
+<!-- 		<bundle>mvn:com.github.livesense/org.liveSense.fragment.sun.misc/${liveSense.fragment.sun.misc.version}</bundle>  -->
 		<bundle>mvn:com.github.livesense/org.liveSense.core/${liveSense.core.version}</bundle>
 	</feature>
 
-	<feature name="org.liveSense.misc" version="1.0.0-SNAPSHOT">
-		<feature>org.apache.sling</feature>
-		<feature>org.liveSense.core</feature>
-		<feature>org.liveSense.framework.gwt</feature>
+	<feature name="liveSense-misc" version="1.0.0-SNAPSHOT">
+		<feature>liveSense-core</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.misc.i18n/${liveSense.misc.i18n.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.misc.javax.persistence/${liveSense.misc.javax.persistence.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.misc.jcrom/${liveSense.misc.jcrom.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.misc.jsr303/${liveSense.misc.jsr303.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.misc.queryBuilder.gwt/${liveSense.misc.queryBuilder.gwt.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.misc.configurationLoader/${liveSense.misc.configurationLoader.version}</bundle>
 	</feature>
 
-	<feature name="org.liveSense.jsp.taglibs" version="1.0.0-SNAPSHOT">
-		<feature>org.apache.sling</feature>
+	<feature name="liveSense-jsp-taglibs" version="1.0.0-SNAPSHOT">
+		<feature>liveSense-sling-scripting</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.jstl/${liveSense.scripting.jsp.taglib.jstl.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.json/${liveSense.scripting.jsp.taglib.json.version}</bundle>
 	</feature>
 
-	<feature name="org.liveSense.framework.cxf" version="${cxf.version}">
-		<feature>org.apache.sling</feature>
-		<feature>org.liveSense.misc</feature>
-		<feature>org.liveSense.core</feature>
-		<bundle>mvn:com.github.livesense/org.liveSense.framework.cxf/${liveSense.framework.cxf.version}</bundle>
-	</feature>
-
-	<feature name="org.liveSense.framework.gwt" version="${gwt.version}">
-		<feature>org.apache.sling</feature>
-		<feature>org.liveSense.core</feature>
+	<feature name="liveSense-framework-gwt" version="${gwt.version}">
+		<feature>liveSense-core</feature>
+		<feature>liveSense-misc</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.framework.gwt/${liveSense.framework.gwt.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.gwt.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.queryBuilder.gwt/${liveSense.misc.queryBuilder.gwt.version}</bundle>
 	</feature>
 
-	<feature name="org.liveSense.framework.gxt" version="${gxt.version}">
-		<feature>org.apache.sling</feature>
-		<feature>org.liveSense.misc</feature>
-		<feature>org.liveSense.core</feature>
+	<feature name="liveSense-framework-gxt" version="${gxt.version}">
+		<feature>liveSense-core</feature>
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-framework-gwt</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.framework.gxt/${liveSense.framework.gxt.version}</bundle>
 	</feature>
 
-	<feature name="org.liveSense.framework.apacheds" version="${apacheds.version}">
-		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ehcache/2.5.2_1</bundle>
+	<feature name="liveSense-framework-solr" version="${solr.version}">
+		<feature>liveSense-core</feature>
+		<feature>liveSense-misc</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.framework.solr/${liveSense.framework.solr.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-framework-apacheds" version="${liveSense.framework.apacheds.version}">
+		<feature>liveSense-commons</feature>
+		<bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.antlr/2.7.7_4</bundle>
+		<bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ehcache/2.5.2_1</bundle>
 		<bundle>mvn:org.apache.mina/mina-core/2.0.4</bundle>
 		<bundle>mvn:org.bouncycastle/bcprov-jdk16/1.46</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.framework.apacheds/${liveSense.framework.apacheds.version}</bundle>
 	</feature>
 
-	<feature name="org.liveSense.services" version="1.0.0-SNAPSHOT">
-		<feature>org.apache.sling</feature>
-		<feature>org.liveSense.misc</feature>
-		<feature>org.liveSense.core</feature>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.activation/${liveSense.service.activation.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.captcha/${liveSense.service.captcha.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.dataSourceProvider/${liveSense.service.dataSourceProvider.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.email/${liveSense.service.email.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.languageSelector/${liveSense.service.languageSelector.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.report.jasper/${liveSense.service.report.jasper.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.securityManager/${liveSense.service.securityManager.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.thumbnailGenerator/${liveSense.service.thumbnailGenerator.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.service.xssRemove/${liveSense.service.xssRemove.version}</bundle>
+	<feature name="liveSense-framework-jasperreports" version="${liveSense.framework.jasperreports.version}">
+		<feature>liveSense-commons</feature>
+		<bundle>mvn:org.codehaus.groovy/groovy-all/1.8.2</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.misc.javax.persistence/${liveSense.misc.javax.persistence.version}</bundle>
+		<bundle>mvn:org.bouncycastle/bcmail-jdk16/1.46</bundle>
+		<bundle>mvn:org.bouncycastle/bcprov-jdk16/1.46</bundle>
+		<bundle>mvn:org.bouncycastle/bcprov-ext-jdk16/1.46</bundle>
+		<bundle>mvn:org.bouncycastle/bctsp-jdk16/1.46</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.framework.jasperreports/${liveSense.framework.jasperreports.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-solr" version="${liveSense.service.solr.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<feature>liveSense-framework-lucene</feature>
+		<feature>liveSense-framework-solr</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.solr/${liveSense.service.solr.version}</bundle>
-        <bundle>mvn:org.apache.zookeeper/zookeeper/3.4.4</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.solr.configurationLoader/${liveSense.service.solr.configurationLoader.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-apacheds" version="${liveSense.service.apacheds.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<feature>liveSense-framework-apacheds</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.apacheds/${liveSense.service.apacheds.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-activation" version="${liveSense.service.activation.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.activation/${liveSense.service.activation.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-captcha" version="${liveSense.service.captcha.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<feature>liveSense-sling-scripting</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.captcha/${liveSense.service.captcha.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-dataSourceProvider" version="${liveSense.service.dataSourceProvider.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.dataSourceProvider/${liveSense.service.dataSourceProvider.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-email" version="${liveSense.service.email.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.email/${liveSense.service.email.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-languageSelector" version="${liveSense.service.languageSelector.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<feature>liveSense-sling-scripting</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.languageSelector/${liveSense.service.languageSelector.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-report-jasper" version="${liveSense.service.report.jasper.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<feature>liveSense-framework-jasperreports</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.report.jasper/${liveSense.service.report.jasper.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-securityManager" version="${liveSense.service.securityManager.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.securityManager/${liveSense.service.securityManager.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-thumbnailGenerator" version="${liveSense.service.thumbnailGenerator.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.thumbnailGenerator/${liveSense.service.thumbnailGenerator.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-xssRemove" version="${liveSense.service.xssRemove.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.xssRemove/${liveSense.service.xssRemove.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-cxf" version="${liveSense.service.cxf.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.cxf/${liveSense.service.cxf.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-gwt" version="${liveSense.service.gwt.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<feature>liveSense-framework-gwt</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.gwt/${liveSense.service.gwt.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-service-markdown" version="${liveSense.service.markdown.version}">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<feature>liveSense-service-languageSelector</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.service.markdown/${liveSense.service.markdown.version}</bundle>
 	</feature>
 
 </features>
