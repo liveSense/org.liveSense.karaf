@@ -1,9 +1,8 @@
 .svn
 .hg
 /target
-/war
+/war/*
 /.settings
 /.project
 /.classpath
 /nbactions.xml
-velocity.log

@@ -24,106 +24,13 @@
 
 	<version>1.0.0-SNAPSHOT</version>
 	<name>liveSense :: Karaf</name>
-	<description>liveSense KAR archive</description>
+	<description>liveSense ServiceMix/Karaf features</description>
 
-    <build>
-        <plugins>
-            <!-- Karaf Features installation  -->
-            <plugin>
-	         <artifactId>maven-resources-plugin</artifactId>
-	         <version>2.4.3</version>
-	         <executions>
-	           <execution>
-	             <id>copy-resources</id>
-	             <phase>process-sources</phase>
-	             <goals>
-	               <goal>copy-resources</goal>
-	             </goals>
-	             <configuration>
-	               <outputDirectory>${basedir}/target</outputDirectory>
-	               <resources>
-	                 <resource>
-	                   <directory>src/main/bundles</directory>
-	                  	<includes>
-          					<include>features.xml</include>
-	                   </includes>
-	                   <filtering>true</filtering>
-	                 </resource>
-	                  <!-- Legal stuff -->
-                        <resource>
-                            <directory>${basedir}</directory>
-                            <targetPath>META-INF</targetPath>
-                            <includes>
-                                <include>LICENSE*</include>
-                                <include>NOTICE*</include>
-                                <include>DISCLAIMER</include>
-                            </includes>
-                        </resource>
-	               </resources>
-	             </configuration>
-	           </execution>
-	         </executions>
-	       </plugin>
-            <plugin>
-            		<groupId>org.codehaus.mojo</groupId>
-		         <artifactId>build-helper-maven-plugin</artifactId>
-		         <executions>
-		           <execution>
-		             <id>attach-artifacts</id>
-		             <phase>package</phase>
-		             <goals>
-		               <goal>attach-artifact</goal>
-		             </goals>
-		             <configuration>
-		               <artifacts>
-		                 <artifact>
-		                   <file>target/features.xml</file>
-		                   <type>xml</type>
-		                   <classifier>features</classifier>
-		                 </artifact>
-		               </artifacts>
-		             </configuration>
-		           </execution>
-		         </executions>
-		       </plugin>
-		       
-		       <!-- Create Karaf KAR -->
-		      <plugin>
-                <groupId>org.apache.karaf.tooling</groupId>
-                <artifactId>features-maven-plugin</artifactId>
-                <version>2.2.10</version>
-                <executions>
-                    <execution>
-                        <id>create-kar</id>
-                        <goals>
-                            <goal>create-kar</goal>
-                        </goals>
-                        <configuration>
-                            <featuresFile>${project.build.directory}/features.xml</featuresFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-  
-  			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>ianal-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>verify-legal-files</goal>
-						</goals>
-						<configuration>
-							<!-- Fail the build if any artifacts are missing legal files -->
-							<strict>false</strict>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-  
-        </plugins>
-    </build>
-
+    <modules>
+        <module>features</module>
+        <module>branding</module>
+        <module>assemblies</module>
+    </modules>
 </project>
 
 

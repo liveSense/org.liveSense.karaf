@@ -1,7 +1,7 @@
 .svn
 .hg
 /target
-/war
+/war/*
 /.settings
 /.project
 /.classpath
