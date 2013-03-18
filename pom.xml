@@ -27,7 +27,8 @@
 	<description>liveSense ServiceMix/Karaf features</description>
 
     <modules>
-        <module>features</module>
+		<module>slingbootstrap</module>
+		<module>features</module>
         <module>branding</module>
         <module>assemblies</module>
     </modules>
