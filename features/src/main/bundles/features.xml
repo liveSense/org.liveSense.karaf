@@ -3,10 +3,11 @@
 <features name='liveSense-1.0.0-SNAPSHOT' xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
 	<feature name='liveSense-commons' version="1.0.0-SNAPSHOT" description="liveSense commons bundles">
 <!-- 	 	<feature version="[2,3)">http</feature> -->
-		<feature>eventadmin</feature>		
-		<bundle start-level="18">mvn:org.apache.felix/org.apache.felix.scr/1.6.0</bundle>
-		<bundle start-level="20">mvn:org.apache.aries.transaction/org.apache.aries.transaction.blueprint/0.3</bundle>
-		<bundle dependency="true" start-level="20">mvn:org.apache.aries.transaction/org.apache.aries.transaction.manager/0.3.1</bundle>
+		<feature>eventadmin</feature>
+		<feature>transaction</feature>
+ 		<bundle start-level="18">mvn:org.apache.felix/org.apache.felix.scr/1.6.0</bundle>
+<!-- 		<bundle start-level="20">mvn:org.apache.aries.transaction/org.apache.aries.transaction.blueprint/0.3</bundle>
+		<bundle dependency="true" start-level="20">mvn:org.apache.aries.transaction/org.apache.aries.transaction.manager/0.3.1</bundle>  -->
 		<bundle start-level="20">mvn:org.apache.felix/org.apache.felix.http.jetty/2.2.0</bundle>
 		<bundle start-level="20">mvn:org.apache.felix/org.apache.felix.http.whiteboard/2.2.0</bundle>
 		<bundle start-level="20">mvn:commons-io/commons-io/1.4</bundle>
@@ -109,7 +110,7 @@
     <feature name="liveSense-sling-core" version="2.0" description="liveSense Sling Core">
         <feature>liveSense-sling-commons</feature>
         <feature>liveSense-sling-api</feature>
-  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.launchpad.installer/${sling.launchpad.installer.version}</bundle>        
+  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.launchpad.installer/${sling.launchpad.installer.version}</bundle>
         <bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.adapter/${sling.adapter.version}</bundle>
   		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.auth.core/${sling.auth.core.version}</bundle>
   		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.event/${sling.event.version}</bundle>
@@ -207,7 +208,7 @@
 		<bundle dependency="true" start-level="20">mvn:net.sf.transmorph/transmorph/3.1.1</bundle>
 		<bundle dependency="true" start-level="20">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.guava/11_1</bundle>
 		<bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/2.1_3_4</bundle>
-		
+
 <!-- 		<bundle>mvn:com.github.livesense/org.liveSense.fragment.sun.misc/${liveSense.fragment.sun.misc.version}</bundle>  -->
 		<bundle>mvn:com.github.livesense/org.liveSense.core/${liveSense.core.version}</bundle>
 	</feature>
