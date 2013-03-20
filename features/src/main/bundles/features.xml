@@ -94,6 +94,7 @@
         <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.osgi/${sling.commons.osgi.version}</bundle>
         <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.scheduler/${sling.commons.scheduler.version}</bundle>
         <bundle start-level="53">mvn:org.apache.sling/org.apache.sling.commons.threads/${sling.commons.threads.version}</bundle>
+        <bundle start-level="53">mvn:com.github.livesense/org.liveSense.features.sling.bootstrap/1.0.0-SNAPSHOT</bundle>
     </feature>
 
 
@@ -110,7 +111,7 @@
     <feature name="liveSense-sling-core" version="2.0" description="liveSense Sling Core">
         <feature>liveSense-sling-commons</feature>
         <feature>liveSense-sling-api</feature>
-  		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.launchpad.installer/${sling.launchpad.installer.version}</bundle>
+<!--   		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.launchpad.installer/${sling.launchpad.installer.version}</bundle> -->
         <bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.adapter/${sling.adapter.version}</bundle>
   		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.auth.core/${sling.auth.core.version}</bundle>
   		<bundle start-level='55'>mvn:org.apache.sling/org.apache.sling.event/${sling.event.version}</bundle>
@@ -156,6 +157,7 @@
   		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.servlets.post/${sling.servlets.post.version}</bundle>
   		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.servlets.resolver/${sling.servlets.resolver.version}</bundle>
 		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.server/${sling.jcr.jackrabbit.server.version}</bundle>
+		<bundle start-level="57">mvn:com.github.livesense/org.liveSense.fragment.jackrabbit.server.jaybird.ddl/${liveSense.fragment.jackrabbit.server.jaybird.ddl.version}</bundle>
 		<!-- TODO: Selectable authentication provider -->
 		<bundle start-level='57'>mvn:com.github.livesense/org.liveSense.auth.ldap/${liveSense.auth.ldap.version}</bundle>
 		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.i18n/${sling.i18n.version}</bundle>
@@ -215,18 +217,22 @@
 
 	<feature name="liveSense-misc" version="1.0.0-SNAPSHOT" description="liveSense misc modules">
 		<feature>liveSense-core</feature>
-		<bundle>mvn:com.github.livesense/org.liveSense.misc.i18n/${liveSense.misc.i18n.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.misc.javax.persistence/${liveSense.misc.javax.persistence.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.misc.jcrom/${liveSense.misc.jcrom.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.misc.jsr303/${liveSense.misc.jsr303.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.misc.configurationLoader/${liveSense.misc.configurationLoader.version}</bundle>
+		<bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.hibernate-validator/4.1.0.Final_2</bundle>
+		<bundle dependency="true">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jsr303-api-1.0.0/2.2.0</bundle>
+		<bundle dependency="true">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.java-persistence-api-1.1.1/2.2.0</bundle>
+
+		<bundle start-level="60">mvn:com.github.livesense/org.liveSense.misc.i18n/${liveSense.misc.i18n.version}</bundle>
+<!-- 		<bundle>mvn:com.github.livesense/org.liveSense.misc.javax.persistence/${liveSense.misc.javax.persistence.version}</bundle> -->
+		<bundle start-level="60">mvn:com.github.livesense/org.liveSense.misc.jcrom/${liveSense.misc.jcrom.version}</bundle>
+<!-- 		<bundle>mvn:com.github.livesense/org.liveSense.misc.jsr303/${liveSense.misc.jsr303.version}</bundle> -->
+		<bundle start-level="60">mvn:com.github.livesense/org.liveSense.misc.queryBuilder/${liveSense.misc.queryBuilder.version}</bundle>
+		<bundle start-level="60">mvn:com.github.livesense/org.liveSense.misc.configurationLoader/${liveSense.misc.configurationLoader.version}</bundle>
 	</feature>
 
 	<feature name="liveSense-jsp-taglibs" version="1.0.0-SNAPSHOT" description="liveSense JSP Tag libraries">
 		<feature>liveSense-sling-scripting</feature>
-		<bundle>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.jstl/${liveSense.scripting.jsp.taglib.jstl.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.json/${liveSense.scripting.jsp.taglib.json.version}</bundle>
+		<bundle start-level="60">mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.jstl/${liveSense.scripting.jsp.taglib.jstl.version}</bundle>
+		<bundle start-level="60">mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.json/${liveSense.scripting.jsp.taglib.json.version}</bundle>
 	</feature>
 
 	<feature name="liveSense-framework-gwt" version="${gwt.version}" description="liveSense Googe Widget Toolkit framework">
@@ -266,6 +272,9 @@
 	<feature name="liveSense-framework-solr" version="${solr.version}" description="liveSense Solr Framework">
 		<feature>liveSense-core</feature>
 		<feature>liveSense-misc</feature>
+		<feature>liveSense-framework-lucene</feature>
+		<bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spatial4j/0.3_1</bundle>
+		<bundle>mvn:org.apache.zookeeper/zookeeper/3.4.4</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.framework.solr/${liveSense.framework.solr.version}</bundle>
 	</feature>
 
@@ -294,7 +303,6 @@
 	<feature name="liveSense-service-solr" version="${liveSense.service.solr.version}" description="liveSense Solr Service">
 		<feature>liveSense-misc</feature>
 		<feature>liveSense-sling-engine</feature>
-		<feature>liveSense-framework-lucene</feature>
 		<feature>liveSense-framework-solr</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.solr/${liveSense.service.solr.version}</bundle>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.solr.configurationLoader/${liveSense.service.solr.configurationLoader.version}</bundle>
@@ -365,6 +373,7 @@
 	<feature name="liveSense-service-cxf" version="${liveSense.service.cxf.version}" description="liveSense CXF (JaxRS, Jaxb) service">
 		<feature>liveSense-misc</feature>
 		<feature>liveSense-sling-engine</feature>
+		<feature>cxf</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.cxf/${liveSense.service.cxf.version}</bundle>
 	</feature>
 
@@ -380,6 +389,60 @@
 		<feature>liveSense-sling-engine</feature>
 		<feature>liveSense-service-languageSelector</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.markdown/${liveSense.service.markdown.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-initial-content" version="${liveSense.content.initial.version}" description="liveSense initial content">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.content.initial/${liveSense.content.initial.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-sample-gwt-notes" version="${liveSense.sample.gwt.notes.version}" description="liveSense GWT Notes - RPC sample ">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-service-gwt</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.sample.gwt.notes/${liveSense.sample.gwt.notes.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-sample-gwt-notesRequestFactory" version="${liveSense.sample.gwt.notesRequestFactory.version}" description="liveSense GWT Notes - Request Factory sample">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-service-gwt</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.sample.gwt.notesRequestFactory/${liveSense.sample.gwt.notesRequestFactory.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-sample-markdown" version="${liveSense.sample.markdown.version}" description="liveSense MarkDown sample">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-service-markdown</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.sample.markdown/${liveSense.sample.markdown.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-sample-simplePortal" version="${liveSense.sample.simplePortal.version}" description="liveSense Simple Portal sample">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-jsp-taglibs</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.sample.simplePortal/${liveSense.sample.simplePortal.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-sample-solr" version="${liveSense.sample.solr.version}" description="liveSense Solr sample">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-jsp-taglibs</feature>
+		<feature>liveSense-service-solr</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.sample.solr/${liveSense.sample.solr.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-sample-webServiceServlet" version="${liveSense.sample.webServiceServlet.version}" description="liveSense CXF WebServices samples">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-jsp-taglibs</feature>
+		<feature>liveSense-service-cxf</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.sample.webServiceServlet/${liveSense.sample.webServiceServlet.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-sample-all" version="1.0.0-SNAPSHOT" description="liveSense All samples">
+		<feature>liveSense-initial-content</feature>
+		<feature>liveSense-sample-gwt-notes</feature>
+		<feature>liveSense-sample-gwt-notesRequestFactory</feature>
+		<feature>liveSense-sample-markdown</feature>
+		<feature>liveSense-sample-simplePortal</feature>
+		<feature>liveSense-sample-solr</feature>
+		<feature>liveSense-sample-webServiceServlet</feature>
 	</feature>
 
 </features>
