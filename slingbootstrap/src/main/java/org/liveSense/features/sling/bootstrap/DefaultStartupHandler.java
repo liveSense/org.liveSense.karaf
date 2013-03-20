@@ -151,16 +151,10 @@ public class DefaultStartupHandler
                + String.valueOf(this.targetStartLevel) + ", and expected bundle count=" + String.valueOf(this.expectedBundlesCount));
         final Thread t = new Thread(this);
         t.start();
-
-
-
     }
-
-
 
     @Deactivate
     protected void deactivate(BundleContext context) {
-
     }
 
     /**
