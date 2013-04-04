@@ -164,6 +164,8 @@
 		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.webdav/${sling.jcr.webdav.version}</bundle>
 		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.usermanager/${sling.jcr.jackrabbit.usermanager.version}</bundle>
 		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.jackrabbit.accessmanager/${sling.jcr.jackrabbit.accessmanager.version}</bundle>
+		<bundle start-level='57'>mvn:org.apache.sling/org.apache.sling.jcr.davex/${sling.jcr.davex.version}</bundle>
+
 	</feature>
 
     <feature name="liveSense-sling-scripting" version="2.0" description="liveSense Sling Scripting">
@@ -374,6 +376,10 @@
 		<feature>liveSense-misc</feature>
 		<feature>liveSense-sling-engine</feature>
 		<feature>cxf</feature>
+		<bundle>mvn:org.codehaus.jackson/jackson-core-asl/${jackson.version}</bundle>
+		<bundle>mvn:org.codehaus.jackson/jackson-mapper-asl/${jackson.version}</bundle>
+		<bundle>mvn:org.codehaus.jackson/jackson-jaxrs/${jackson.version}</bundle>
+
 		<bundle>mvn:com.github.livesense/org.liveSense.service.cxf/${liveSense.service.cxf.version}</bundle>
 	</feature>
 
@@ -389,6 +395,16 @@
 		<feature>liveSense-sling-engine</feature>
 		<feature>liveSense-service-languageSelector</feature>
 		<bundle>mvn:com.github.livesense/org.liveSense.service.markdown/${liveSense.service.markdown.version}</bundle>
+	</feature>
+
+	<feature name="liveSense-jcr-explorer" version="${liveSense.jcr.explorer.version}" description="liveSense JCR Explorer">
+		<feature>liveSense-misc</feature>
+		<feature>liveSense-sling-engine</feature>
+   		<feature>liveSense-jsp-taglibs</feature>
+		<feature>liveSense-service-gwt</feature>
+		<feature>liveSense-service-languageSelector</feature>
+		<feature>liveSense-service-securityManager</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.jcr.explorer/${liveSense.jcr.explorer.version}</bundle>
 	</feature>
 
 	<feature name="liveSense-initial-content" version="${liveSense.content.initial.version}" description="liveSense initial content">
