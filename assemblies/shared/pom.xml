@@ -10,7 +10,7 @@
         (the "License"); you may not use this file except in compliance with
         the License.  You may obtain a copy of the License at
 
-           http://www.apache.org/licenses/LICENSE-2.0
+            http://www.apache.org/licenses/LICENSE-2.0
 
         Unless required by applicable law or agreed to in writing, software
         distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,41 +23,66 @@
 
     <parent>
         <groupId>com.github.livesense</groupId>
-        <artifactId>org.liveSense.features.assemblies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>liveSense-assemblies</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.github.livesense</groupId>
-    <artifactId>assemblies-shared</artifactId>
+    <artifactId>liveSense-assemblies-shared</artifactId>
     <packaging>jar</packaging>
-    <name>liveSense :: Features :: Assemblies :: Shared files</name>
-    <version>1.0.0-SNAPSHOT</version>
-    
+    <name>liveSense :: Features :: Assemblies :: liveSense (Shared)</name>
+
+    <properties>
+        <appendedResourcesDirectory>${basedir}/../etc/appended-resources</appendedResourcesDirectory>
+    </properties>
+
     <dependencies>
         <dependency>
-            <groupId>org.apache.servicemix.specs</groupId>
-            <artifactId>org.apache.servicemix.specs.jaxp-api-1.4</artifactId>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>framework</artifactId>
+            <type>kar</type>
         </dependency>
         <dependency>
-            <groupId>org.apache.servicemix.specs</groupId>
-            <artifactId>org.apache.servicemix.specs.jaxb-api-2.2</artifactId>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>standard</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.servicemix.specs</groupId>
-            <artifactId>org.apache.servicemix.specs.jaxws-api-2.2</artifactId>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>spring</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.servicemix.specs</groupId>
-            <artifactId>org.apache.servicemix.specs.saaj-api-1.3</artifactId>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>enterprise</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.servicemix.specs</groupId>
-            <artifactId>org.apache.servicemix.specs.activator</artifactId>
+            <groupId>org.apache.cxf.karaf</groupId>
+            <artifactId>apache-cxf</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>runtime</scope>
+            <version>${cxf.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.livesense</groupId>
+            <artifactId>org.liveSense.features</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>runtime</scope>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
- 
-    <build>
+
+<build>
         <resources>
             <resource>
                 <!-- we need unfiltered copies of these files -->
@@ -69,5 +94,5 @@
             </resource>
         </resources>
     </build>
-
 </project>
+

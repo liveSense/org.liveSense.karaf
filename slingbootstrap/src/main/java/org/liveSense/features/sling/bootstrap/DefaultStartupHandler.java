@@ -250,7 +250,7 @@ public class DefaultStartupHandler
         if ( finished.get() ) {
             return;
         }
-        logger.info("Received framework event " + event);
+        logger.debug("Received framework event " + event);
 
         if ( !this.useIncremental ) {
             // restart
@@ -269,7 +269,7 @@ public class DefaultStartupHandler
                 } else {
                     this.enqueue(true);
                     final int startLevel = this.startLevelService.getStartLevel();
-                    logger.info("Startup progress " + String.valueOf(startLevel) + '/' + String.valueOf(targetStartLevel));
+                    logger.debug("Startup progress " + String.valueOf(startLevel) + '/' + String.valueOf(targetStartLevel));
                     final float ratio = (float) startLevel / (float) targetStartLevel;
                     this.startupProgress(ratio);
                 }
@@ -281,7 +281,7 @@ public class DefaultStartupHandler
      * Notify finished startup
      */
     private void startupFinished() {
-        logger.info("Startup finished.");
+        logger.info("Sling Launchpad Startup finished.");
         this.finished.set(true);
 
         final Object[] listeners = this.listenerTracker.getServices();
@@ -325,13 +325,13 @@ public class DefaultStartupHandler
      */
     public void bundleChanged(final BundleEvent event) {
         if (!finished.get()) {
-            logger.info("Received bundle event " + event);
+            logger.debug("Received bundle event " + event);
 
             if (event.getType() == BundleEvent.RESOLVED || event.getType() == BundleEvent.STARTED) {
                 // Add (if not existing) bundle to active bundles and refresh progress bar
                 activeBundles.add(event.getBundle().getSymbolicName());
 
-                logger.info("Startup progress " + String.valueOf(activeBundles.size()) + '/' + String.valueOf(expectedBundlesCount));
+                logger.debug("Startup progress " + String.valueOf(activeBundles.size()) + '/' + String.valueOf(expectedBundlesCount));
                 final float ratio = (float) activeBundles.size() / (float) expectedBundlesCount;
                 this.startupProgress(ratio);
             } else if (event.getType() == BundleEvent.STOPPED) {

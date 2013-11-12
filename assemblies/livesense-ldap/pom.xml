@@ -39,7 +39,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.github.livesense</groupId>
-			<artifactId>liveSense-assemblies-shared</artifactId>
+			<artifactId>assemblies-shared</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -97,7 +97,6 @@
 			<version>${servicemix.version}</version>
 		</dependency>
 -->
-        <!--
         <dependency>
 			<groupId>org.apache.camel.karaf</groupId>
 			<artifactId>apache-camel</artifactId>
@@ -106,7 +105,7 @@
 			<scope>runtime</scope>
 			<version>${camel.version}</version>
 		</dependency>
-         -->
+
         <dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-karaf</artifactId>
@@ -305,6 +304,8 @@
 						<feature>evendadmin</feature>
                         <feature>transaction</feature>
                         <feature>apache-commons</feature>
+                        <feature>liveSense-framework-apacheds</feature>
+                        <feature>liveSense-service-apacheds</feature>
 						<feature>liveSense-framework-lucene</feature>
                         <feature>liveSense-jackrabbit</feature>
                         <feature>liveSense-sling-commons</feature>
@@ -314,7 +315,6 @@
                         <feature>liveSense-sling-engine</feature>
                         <feature>liveSense-sling-scripting</feature>
                         <feature>liveSense-webconsole</feature>
-                        <feature>liveSense-sling-webconsole</feature>
                     </bootFeatures>
                     <startupFeature>
 					</startupFeature>
