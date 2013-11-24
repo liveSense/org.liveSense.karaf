@@ -34,8 +34,8 @@
 
     <version>1.0.1-SNAPSHOT</version>
     <modules>
-        <module>shared</module>
-        <module>livesense</module>
+        <module>liveSense-assemblies-shared</module>
+        <module>liveSense-assemblies-default</module>
     </modules>
 
     
