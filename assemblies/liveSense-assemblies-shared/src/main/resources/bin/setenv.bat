@@ -40,7 +40,7 @@ rem Window name of the windows console
 SET KARAF_TITLE=liveSense
 
 rem Minimum memory for the JVM
-SET JAVA_MIN_MEM=64M # Minimum memory for the JVM
+SET JAVA_MIN_MEM=64M
 rem Maximum memory for the JVM
 set  JAVA_MAX_MEM=512M
 rem Minimum perm memory for the JVM
