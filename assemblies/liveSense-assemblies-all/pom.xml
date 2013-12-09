@@ -873,7 +873,7 @@
 								<feature>liveSense-sample-simplePortal</feature>
 								<feature>liveSense-sample-solr</feature>
 								<feature>liveSense-sample-webServiceServlet</feature>
-								<feature>liveSense-scripting-jsp-taglib-json</feature>
+								<feature>liveSense-scripting-jsp-taglib-jsonatg</feature>
 								<feature>liveSense-scripting-jsp-taglib-jstl</feature>
 								<feature>liveSense-service-activation</feature>
 								<feature>liveSense-service-apacheds</feature>
