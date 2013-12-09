@@ -14,7 +14,7 @@
 	<repository>mvn:com.github.livesense/org.liveSense.fragment.sun.misc/${liveSense.fragment.sun.misc.version}/xml/features</repository>
 	<repository>mvn:com.github.livesense/org.liveSense.fragment.sun.security/${liveSense.fragment.sun.security.version}/xml/features</repository>
 	<repository>mvn:com.github.livesense/org.liveSense.fragment.com.sun.image.codec.jpeg/${liveSense.fragment.com.sun.image.codec.jpeg.version}/xml/features</repository>
-	<repository>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.json/${liveSense.scripting.jsp.taglib.json.version}/xml/features</repository>
+	<repository>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.jsonatg/${liveSense.scripting.jsp.taglib.jsonatg.version}/xml/features</repository>
 	<repository>mvn:com.github.livesense/org.liveSense.scripting.jsp.taglib.jstl/${liveSense.scripting.jsp.taglib.jstl.version}/xml/features</repository>
 	<repository>mvn:com.github.livesense/org.liveSense.framework.fitnesse/${liveSense.framework.fitnesse.version}/xml/features</repository>
 	<repository>mvn:com.github.livesense/org.liveSense.framework.jodconverter/${liveSense.framework.jodconverter.version}/xml/features</repository>

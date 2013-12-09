@@ -253,11 +253,11 @@
 
 		<dependency>
 			<groupId>com.github.livesense</groupId>
-			<artifactId>org.liveSense.scripting.jsp.taglib.json</artifactId>
+			<artifactId>org.liveSense.scripting.jsp.taglib.jsonatg</artifactId>
 			<classifier>features</classifier>
 			<type>xml</type>
 			<scope>runtime</scope>
-			<version>${liveSense.scripting.jsp.taglib.json.version}</version>
+			<version>${liveSense.scripting.jsp.taglib.jsonatg.version}</version>
 		</dependency>
 
 		<dependency>
