@@ -103,7 +103,8 @@ public class CreateArchiveMojo extends MojoSupport {
         }
     }
 
-    private void archive(String type) throws IOException {
+    @SuppressWarnings("deprecation")
+	private void archive(String type) throws IOException {
         Artifact artifact1 = factory.createArtifactWithClassifier(project.getArtifact().getGroupId(), project.getArtifact().getArtifactId(), project.getArtifact().getVersion(), type, "bin");
         File target1 = archive(targetServerDirectory, destDir, artifact1);
         projectHelper.attachArtifact( project, artifact1.getType(), null, target1 );
@@ -168,7 +169,24 @@ public class CreateArchiveMojo extends MojoSupport {
             fs.setDir(source);
             fs.setPrefix(serverName);
             fs.setProject(project);
+            fs.setExcludes("bin/");
             zip.addFileset(fs);
+
+            fs = new ZipFileSet();
+            fs.setDir(source);
+            fs.setPrefix(serverName);
+            fs.setProject(project);
+            fs.setIncludes("bin/");
+            fs.setExcludes("bin/*.bat");
+            fs.setFileMode("755");
+            zip.add(fs);
+
+            fs = new ZipFileSet();
+            fs.setDir(source);
+            fs.setPrefix(serverName);
+            fs.setProject(project);
+            fs.setIncludes("bin/*.bat");
+            zip.add(fs);
 
             for (Resource resource: this.project.getResources()) {
                 File resourceFile = new File(resource.getDirectory());

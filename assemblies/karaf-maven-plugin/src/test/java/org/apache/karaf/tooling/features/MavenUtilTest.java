@@ -22,6 +22,7 @@ package org.apache.karaf.tooling.features;
 
 import org.junit.Test;
 import org.eclipse.aether.artifact.DefaultArtifact;
+
 import static org.apache.karaf.tooling.features.MavenUtil.aetherToMvn;
 import static org.apache.karaf.tooling.features.MavenUtil.artifactToMvn;
 import static org.apache.karaf.tooling.features.MavenUtil.mvnToAether;

@@ -18,12 +18,7 @@
 package org.apache.karaf.tooling.features;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
@@ -74,7 +69,6 @@ import static org.apache.karaf.deployer.kar.KarArtifactInstaller.FEATURE_CLASSIF
  * @description Generates the features XML file starting with an optional source feature.xml and adding
  * project dependencies as bundles and feature/car dependencies
  */
-@SuppressWarnings("unchecked")
 public class GenerateDescriptorMojo extends AbstractLogEnabled implements Mojo {
 
     /**
@@ -104,6 +98,13 @@ public class GenerateDescriptorMojo extends AbstractLogEnabled implements Mojo {
      * @parameter default-value="${project.build.directory}/feature/feature.xml"
      */
     private File outputFile;
+
+    /**
+     * (wrapper) Exclude some artifacts from the generated feature.
+     *
+     * @parameter
+     */
+    private List<String> excludedArtifactIds = new ArrayList<String>();
 
     /**
      * The resolver to use for the feature.  Normally null or "OBR" or "(OBR)"
@@ -228,15 +229,6 @@ public class GenerateDescriptorMojo extends AbstractLogEnabled implements Mojo {
     private List<RemoteRepository> projectRepos;
 
     /**
-     * The project's remote repositories to use for the resolution of plugins and their dependencies.
-     *
-     * @parameter default-value="${project.remotePluginRepositories}"
-     * @required
-     * @readonly
-     */
-    private List<RemoteRepository> pluginRepos;
-
-    /**
      * @component role="org.apache.maven.shared.filtering.MavenResourcesFiltering" role-hint="default"
      * @required
      * @readonly
@@ -268,7 +260,7 @@ public class GenerateDescriptorMojo extends AbstractLogEnabled implements Mojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-            DependencyHelper dependencyHelper = new DependencyHelper(pluginRepos, projectRepos, repoSession, repoSystem);
+            DependencyHelper dependencyHelper = new DependencyHelper(projectRepos, repoSession, repoSystem);
             dependencyHelper.getDependencies(project, includeTransitiveDependency);
             this.localDependencies = dependencyHelper.getLocalDependencies();
             this.treeListing = dependencyHelper.getTreeListing();
@@ -338,6 +330,11 @@ public class GenerateDescriptorMojo extends AbstractLogEnabled implements Mojo {
         }
         for (Map.Entry<Artifact, String> entry : localDependencies.entrySet()) {
             Artifact artifact = entry.getKey();
+
+            if (excludedArtifactIds.contains(artifact.getArtifactId())) {
+                continue;
+            }
+
             if (DependencyHelper.isFeature(artifact)) {
                 if (aggregateFeatures && FEATURE_CLASSIFIER.equals(artifact.getClassifier())) {
                     File featuresFile = resolve(artifact);
@@ -411,6 +408,7 @@ public class GenerateDescriptorMojo extends AbstractLogEnabled implements Mojo {
             if (m == null) {
                 getLogger().warn("Manifest not present in the first entry of the zip - " + file.getName());
             }
+            jar.close();
             return m;
         } finally {
             if (is != null) { // just in case when we did not open bundle
@@ -543,8 +541,6 @@ public class GenerateDescriptorMojo extends AbstractLogEnabled implements Mojo {
      * @parameter
      */
     protected Map<String, String> systemProperties;
-
-    private Map<String, String> previousSystemProperties;
 
     private void checkChanges(Features newFeatures, ObjectFactory objectFactory) throws Exception, IOException, JAXBException, XMLStreamException {
         if (checkDependencyChange) {
@@ -704,7 +700,8 @@ public class GenerateDescriptorMojo extends AbstractLogEnabled implements Mojo {
                                 + ", i.e. build is platform dependent!");
             }
             targetFile.getParentFile().mkdirs();
-            List filters = mavenFileFilter.getDefaultFilterWrappers(project, null, true, session, null);
+            @SuppressWarnings("rawtypes")
+			List filters = mavenFileFilter.getDefaultFilterWrappers(project, null, true, session, null);
             mavenFileFilter.copyFile(sourceFile, targetFile, true, filters, encoding, true);
         } catch (MavenFilteringException e) {
             throw new MojoExecutionException(e.getMessage(), e);

@@ -37,8 +37,9 @@ rem The following section shows the possible configuration options for the defau
 rem karaf scripts
 rem
 rem Window name of the windows console
-SET KARAF_TITLE=liveSense
-
+rem SET KARAF_TITLE
+rem Location of Java installation
+rem SET JAVA_HOME
 rem Minimum memory for the JVM
 SET JAVA_MIN_MEM=64M
 rem Maximum memory for the JVM
@@ -53,6 +54,10 @@ rem Karaf data folder
 rem SET KARAF_DATA
 rem Karaf base folder
 rem SET KARAF_BASE
+rem Karaf etc folder
+rem SET KARAF_ETC
 rem Additional available Karaf options
 rem SET KARAF_OPTS
+rem Enable debug mode
+rem SET KARAF_DEBUG
 

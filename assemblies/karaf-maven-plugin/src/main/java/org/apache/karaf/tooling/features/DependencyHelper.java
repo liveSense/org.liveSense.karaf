@@ -83,24 +83,12 @@ public class DependencyHelper {
       */
      private final List<RemoteRepository> projectRepos;
 
-     /**
-      * The project's remote repositories to use for the resolution of plugins and their dependencies.
-      *
-      * @parameter default-value="${project.remotePluginRepositories}"
-      * @required
-      * @readonly
-      */
-     private final List<RemoteRepository> pluginRepos;
-
     //dependencies we are interested in
     protected Map<Artifact, String> localDependencies;
     //log of what happened during search
     protected String treeListing;
 
-
-
-    public DependencyHelper(List<RemoteRepository> pluginRepos, List<RemoteRepository> projectRepos, RepositorySystemSession repoSession, RepositorySystem repoSystem) {
-        this.pluginRepos = pluginRepos;
+    public DependencyHelper(List<RemoteRepository> projectRepos, RepositorySystemSession repoSession, RepositorySystem repoSystem) {
         this.projectRepos = projectRepos;
         this.repoSession = repoSession;
         this.repoSystem = repoSystem;
@@ -241,7 +229,7 @@ public class DependencyHelper {
                     }
                 } else {
                     log.append(indent).append("local:").append(dependencyNode).append("\n");
-                    if (carDependencies.contains(dependencyNode.getDependency().getArtifact())) {
+                    if (localDependencies.containsKey(dependencyNode.getDependency().getArtifact())) {
                         log.append(indent).append("already in feature, returning:").append(dependencyNode).append("\n");
                         return;
                     }
@@ -251,7 +239,7 @@ public class DependencyHelper {
                         isFromFeature = true;
                     }
                 }
-                if (accept.isContinue()) {
+                if (useTransitiveDependencies && accept.isContinue()) {
                     List<DependencyNode> children = dependencyNode.getChildren();
                     for (DependencyNode child : children) {
                         scan(child, accept, useTransitiveDependencies, isFromFeature, indent + "  ");
@@ -266,8 +254,7 @@ public class DependencyHelper {
         }
 
         private Accept accept(DependencyNode dependency, Accept previous) {
-//            String scope = dependency.getPremanagedScope();
-	    String scope = DependencyManagerUtils.getPremanagedScope(dependency);
+            String scope = dependency.getDependency().getScope();
             if (scope == null || "runtime".equalsIgnoreCase(scope) || "compile".equalsIgnoreCase(scope)) {
                 return previous;
             }

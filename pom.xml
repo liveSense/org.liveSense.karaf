@@ -15,7 +15,7 @@
   </scm>  
   
     <properties>
-        <karaf.version>3.3.0.RC1</karaf.version>
+        <karaf.version>3.3.0</karaf.version>
     </properties>
 	<modelVersion>4.0.0</modelVersion>
 

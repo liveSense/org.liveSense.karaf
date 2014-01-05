@@ -17,41 +17,18 @@
  */
 package org.apache.karaf.tooling.features;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.apache.karaf.tooling.utils.MojoSupport;
+import org.apache.karaf.tooling.features.model.BundleRef;
+import org.apache.karaf.tooling.features.model.Feature;
 import org.apache.maven.artifact.Artifact;
-import org.apache.maven.artifact.repository.ArtifactRepository;
-import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
-import org.apache.maven.artifact.resolver.ArtifactResolutionException;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 /**
- * Generates the features XML file
+ * Add features to a repository directory
  *
  * @goal features-add-to-repository
  * @phase compile
@@ -60,458 +37,91 @@ import org.xml.sax.SAXException;
  * @inheritByDefault true
  * @description Add the features to the repository
  */
-public class AddToRepositoryMojo extends MojoSupport {
-
-    private final static String KARAF_CORE_STANDARD_FEATURE_URL =
-        "mvn:org.apache.karaf.features/standard/%s/xml/features";
-    private final static String KARAF_CORE_ENTERPRISE_FEATURE_URL =
-        "mvn:org.apache.karaf.features/enterprise/%s/xml/features";
-
-    /**
-     * @parameter
-     */
-    private List<String> descriptors;
-
-    /**
-     * @parameter
-     */
-    private List<String> features;
+public class AddToRepositoryMojo extends AbstractFeatureMojo {
 
     /**
      * @parameter expression="${project.build.directory}/features-repo"
      */
-    private File repository;
+    protected File repository;
 
     /**
-     * the target karaf version used to resolve Karaf core features descriptors
-     *
+     * If set to true the exported bundles will be directly copied into the repository dir.
+     * If set to false the default maven repository layout will be used
      * @parameter
      */
-    private String karafVersion;
-
-    /**
-     * @parameter
-     */
-    private final boolean includeMvnBasedDescriptors = false;
+    private boolean flatRepoLayout;
 
     /**
      * @parameter
      */
-    private List<CopyFileBasedDescriptor> copyFileBasedDescriptors;
+    protected List<CopyFileBasedDescriptor> copyFileBasedDescriptors;
 
-    /**
-     * @parameter
-     */
-    private final boolean skipNonMavenProtocols = true;
-
-    /**
-     * @parameter
-     */
-    private final boolean failOnArtifactResolutionError = true;
-
-    /**
-     * @parameter
-     */
-    private final boolean resolveDefinedRepositoriesRecursively = true;
-
-    /**
-     * @parameter
-     */
-    private final boolean addTransitiveFeatures = true;
-
-    @Override
-	public void execute() throws MojoExecutionException, MojoFailureException {
-        if (karafVersion == null) {
-            Package p = Package.getPackage("org.apache.karaf.tooling.features");
-            karafVersion = p.getImplementationVersion();
+    public void execute() throws MojoExecutionException, MojoFailureException {
+        Set<Feature> featuresSet = resolveFeatures();
+        
+        for (Artifact descriptor : descriptorArtifacts) {
+            copy(descriptor, repository);
         }
-        String karafCoreEnterpriseFeatureUrl = String.format(KARAF_CORE_ENTERPRISE_FEATURE_URL, karafVersion);
-        Artifact enterpriseFeatureDescriptor = resourceToArtifact(karafCoreEnterpriseFeatureUrl, true);
-        if (enterpriseFeatureDescriptor != null) {
-            try {
-                resolveBundle(enterpriseFeatureDescriptor, remoteRepos);
-                descriptors.add(0, karafCoreEnterpriseFeatureUrl);
-            } catch (Exception e) {
-                getLog().warn("Can't add " + karafCoreEnterpriseFeatureUrl + " in the descriptors set");
-                getLog().debug(e);
+
+        for (Feature feature : featuresSet) {
+            copyBundlesToDestRepository(feature.getBundles());
+            copyArtifactsToDestRepository(feature.getConfigFiles());
+        }
+        
+        copyFileBasedDescriptorsToDestRepository();
+        
+    }
+
+    private void copyBundlesToDestRepository(List<BundleRef> bundleRefs) throws MojoExecutionException {
+        for (BundleRef bundle : bundleRefs) {
+            Artifact artifact = bundle.getArtifact();
+            if (artifact != null) {
+                copy(artifact, repository);
             }
         }
-        String karafCoreStandardFeatureUrl = String.format(KARAF_CORE_STANDARD_FEATURE_URL, karafVersion);
-        Artifact standardFeatureDescriptor = resourceToArtifact(karafCoreStandardFeatureUrl, true);
-        if (standardFeatureDescriptor != null) {
-            try {
-                resolveBundle(standardFeatureDescriptor, remoteRepos);
-                descriptors.add(0, karafCoreStandardFeatureUrl);
-            } catch (Exception e) {
-                getLog().warn("Can't add " + karafCoreStandardFeatureUrl + " in the descriptors set");
-                getLog().debug(e);
-            }
-        }
+    }
+
+    protected void copy(Artifact artifact, File destRepository) {
         try {
-            Set<String> bundles = new HashSet<String>();
-            Map<String, Feature> featuresMap = new HashMap<String, Feature>();
-            for (String uri : descriptors) {
-                retrieveDescriptorsRecursively(uri, bundles, featuresMap);
-            }
-
-            // no features specified, handle all of them
-            if (features == null) {
-                features = new ArrayList<String>(featuresMap.keySet());
-            }
-
-            Set<String> featuresBundles = new HashSet<String>();
-            Set<String> transitiveFeatures = new HashSet<String>();
-            addFeatures(features, featuresBundles, transitiveFeatures, featuresMap);
-
-            // add the bundles of the configured features to the bundles list
-            bundles.addAll(featuresBundles);
-
-            // if transitive features are enabled we add the contents of those
-            // features to the bundles list
-            if (addTransitiveFeatures) {
-                for (String feature : transitiveFeatures) {
-                    // transitiveFeatures contains name/version
-                    Feature f = featuresMap.get(feature);
-                    getLog().info("Adding contents of transitive feature: " + feature);
-                    bundles.addAll(f.getBundles());
-                    // Treat the config files as bundles, since it is only copying
-                    bundles.addAll(f.getConfigFiles());
-                }
-            }
-
-            // bundles with explicitely specified remote repos. key -> bundle, value -> remote repo
-            List<Artifact> explicitRepoBundles = new ArrayList<Artifact>();
-
-            getLog().info("Base repo: " + localRepo.getUrl());
-            int currentBundle = 0;
-            for (String bundle : bundles) {
-                Artifact artifact = resourceToArtifact(bundle, skipNonMavenProtocols);
-
-                // Maven ArtifactResolver leaves file handles around so need to clean up
-                // or we will run out of file descriptors
-                if (currentBundle++ % 100 == 0) {
-                    System.gc();
-                    System.runFinalization();
-                }
-
-                if (artifact == null) {
-                    continue;
-                }
-                if (artifact.getRepository() != null) {
-                    explicitRepoBundles.add(artifact);
-                } else {
-                    // bundle URL without repository information are resolved now
-                    resolveBundle(artifact, remoteRepos);
-                }
-            }
-            // resolving all bundles with explicitly specified remote repository
-            for (Artifact explicitBundle : explicitRepoBundles) {
-                resolveBundle(explicitBundle, Collections.singletonList(explicitBundle.getRepository()));
-            }
-            if (copyFileBasedDescriptors != null) {
-                for (CopyFileBasedDescriptor fileBasedDescriptor : copyFileBasedDescriptors) {
-                    copy(new FileInputStream(fileBasedDescriptor.getSourceFile()),
-                        repository,
-                        fileBasedDescriptor.getTargetFileName(),
-                        fileBasedDescriptor.getTargetDirectory(),
-                        new byte[8192]);
-                }
-            }
-        } catch (MojoExecutionException e) {
-            throw e;
-        } catch (MojoFailureException e) {
-            throw e;
+            getLog().info("Copying artifact: " + artifact);
+            File destFile = new File(destRepository, getRelativePath(artifact));
+            copy(artifact.getFile(), destFile);
         } catch (Exception e) {
-            throw new MojoExecutionException("Error populating repository", e);
+            getLog().warn("Error copying artifact " + artifact, e);
         }
     }
 
-    private void retrieveDescriptorsRecursively(String uri, Set<String> bundles, Map<String, Feature> featuresMap)
-        throws Exception {
-        // let's ensure a mvn: based url is sitting in the local repo before we try reading it
-        Artifact descriptor = resourceToArtifact(uri, true);
-        if (descriptor != null) {
-            resolveBundle(descriptor, remoteRepos);
+    /**
+     * Get relative path for artifact
+     * TODO consider DefaultRepositoryLayout
+     * @param artifact
+     * @return relative path of the given artifact in a default repo layout
+     */
+    private String getRelativePath(Artifact artifact) {
+        String dir = (this.flatRepoLayout) ? "" : MavenUtil.getDir(artifact);
+        String name = MavenUtil.getFileName(artifact);
+        return dir + name;
+    }
+
+    private void copyArtifactsToDestRepository(List<String> list) throws MojoExecutionException {
+        for (String bundle : list) {
+            Artifact artifact = resourceToArtifact(bundle, skipNonMavenProtocols);
+            if (artifact != null) {
+                resolveArtifact(artifact, remoteRepos);
+                copy(artifact, repository);
+            }
+            checkDoGarbageCollect();
         }
-        if (includeMvnBasedDescriptors) {
-            bundles.add(uri);
-        }
-        Repository repo = new Repository(URI.create(translateFromMaven(uri.replaceAll(" ", "%20"))));
-        for (Feature f : repo.getFeatures()) {
-            featuresMap.put(f.getName() + "/" + f.getVersion(), f);
-        }
-        if (resolveDefinedRepositoriesRecursively) {
-            for (String r : repo.getDefinedRepositories()) {
-                retrieveDescriptorsRecursively(r, bundles, featuresMap);
+    }
+    
+    private void copyFileBasedDescriptorsToDestRepository() {
+        if (copyFileBasedDescriptors != null) {
+            for (CopyFileBasedDescriptor fileBasedDescriptor : copyFileBasedDescriptors) {
+                File destDir = new File(repository, fileBasedDescriptor.getTargetDirectory());
+                File destFile = new File(destDir, fileBasedDescriptor.getTargetFileName());
+                copy(fileBasedDescriptor.getSourceFile(), destFile);
             }
         }
     }
 
-    // resolves the bundle in question
-    // TODO neither remoteRepos nor bundle's Repository are used, only the local repo?????
-    private void resolveBundle(Artifact bundle, List<ArtifactRepository> remoteRepos) throws IOException,
-        MojoFailureException {
-        // TODO consider DefaultRepositoryLayout
-        String dir =
-            bundle.getGroupId().replace('.', '/') + "/" + bundle.getArtifactId() + "/" + bundle.getBaseVersion() + "/";
-        String name =
-            bundle.getArtifactId() + "-" + bundle.getBaseVersion()
-                    + (bundle.getClassifier() != null ? "-" + bundle.getClassifier() : "") + "." + bundle.getType();
-
-        try {
-            getLog().info("Copying bundle: " + bundle);
-            resolver.resolve(bundle, remoteRepos, localRepo);
-            copy(new FileInputStream(bundle.getFile()),
-                repository,
-                name,
-                dir,
-                new byte[8192]);
-        } catch (ArtifactResolutionException e) {
-            if (failOnArtifactResolutionError) {
-                throw new MojoFailureException("Can't resolve bundle " + bundle, e);
-            }
-            getLog().error("Can't resolve bundle " + bundle, e);
-        } catch (ArtifactNotFoundException e) {
-            if (failOnArtifactResolutionError) {
-                throw new MojoFailureException("Can't resolve bundle " + bundle, e);
-            }
-            getLog().error("Can't resolve bundle " + bundle, e);
-        }
-    }
-
-    private void addFeatures(List<String> features, Set<String> featuresBundles, Set<String> transitiveFeatures,
-            Map<String, Feature> featuresMap) {
-        for (String feature : features) {
-
-            // feature could be only the name or name/version
-            int delimIndex = feature.indexOf('/');
-            String version = null;
-            if (delimIndex > 0) {
-                version = feature.substring(delimIndex + 1);
-                feature = feature.substring(0, delimIndex);
-            }
-
-            Feature f = null;
-            if (version != null) {
-                // looking for a specific feature with name and version
-                f = featuresMap.get(feature + "/" + version);
-            } else {
-                // looking for the first feature name (whatever the version is)
-                for (String key : featuresMap.keySet()) {
-                    String[] nameVersion = key.split("/");
-                    if (nameVersion.length>0 && feature.equals(nameVersion[0])) {
-                        f = featuresMap.get(key);
-                        break;
-                    }
-                }
-            }
-            if (f == null) {
-                throw new IllegalArgumentException("Unable to find the feature '" + feature + "'");
-            }
-            // only add the feature to transitives if it is not
-            // listed in the features list defined by the config
-            if (!this.features.contains(f.getName() + "/" + f.getVersion())) {
-                transitiveFeatures.add(f.getName() + "/" + f.getVersion());
-            } else {
-                // add the bundles of the feature to the bundle set
-                getLog().info("Adding contents for feature: " + f.getName() + "/" + f.getVersion());
-                featuresBundles.addAll(f.getBundles());
-                // Treat the config files as bundles, since it is only copying
-                featuresBundles.addAll(f.getConfigFiles());
-            }
-            addFeatures(f.getDependencies(), featuresBundles, transitiveFeatures, featuresMap);
-        }
-    }
-
-    public static void copy(
-            InputStream is, File dir, String destName, String destDir, byte[] buffer)
-        throws IOException {
-        if (destDir == null) {
-            destDir = "";
-        }
-
-        // Make sure the target directory exists and
-        // that is actually a directory.
-        File targetDir = new File(dir, destDir);
-        if (!targetDir.exists()) {
-            if (!targetDir.mkdirs()) {
-                throw new IOException("Unable to create target directory: "
-                        + targetDir);
-            }
-        } else if (!targetDir.isDirectory()) {
-            throw new IOException("Target is not a directory: "
-                    + targetDir);
-        }
-
-        BufferedOutputStream bos = new BufferedOutputStream(
-            new FileOutputStream(new File(targetDir, destName)));
-        int count = 0;
-        while ((count = is.read(buffer)) > 0) {
-            bos.write(buffer, 0, count);
-        }
-        bos.close();
-    }
-
-    public static class Feature {
-
-        private final String name;
-        private String version;
-        private final List<String> dependencies = new ArrayList<String>();
-        private final List<String> bundles = new ArrayList<String>();
-        private final Map<String, Map<String, String>> configs = new HashMap<String, Map<String, String>>();
-        private final List<String> configFiles = new ArrayList<String>();
-
-        public Feature(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-        
-        public String getVersion() {
-            return version;
-        }
-        
-        public void setVersion(String version) {
-            this.version = version;
-        }
-
-        public List<String> getDependencies() {
-            return dependencies;
-        }
-
-        public List<String> getBundles() {
-            return bundles;
-        }
-
-        public Map<String, Map<String, String>> getConfigurations() {
-            return configs;
-        }
-
-        public List<String> getConfigFiles() {
-            return configFiles;
-        }
-
-        public void addDependency(String dependency) {
-            dependencies.add(dependency);
-        }
-
-        public void addBundle(String bundle) {
-            bundles.add(bundle);
-        }
-
-        public void addConfig(String name, Map<String, String> properties) {
-            configs.put(name, properties);
-        }
-
-        public void addConfigFile(String configFile) {
-            configFiles.add(configFile);
-        }
-    }
-
-    public static class Repository {
-
-        private final URI uri;
-        private List<Feature> features;
-        private List<String> repositories;
-
-        public Repository(URI uri) {
-            this.uri = uri;
-        }
-
-        public URI getURI() {
-            return uri;
-        }
-
-        public Feature[] getFeatures() throws Exception {
-            if (features == null) {
-                loadFeatures();
-            }
-            return features.toArray(new Feature[features.size()]);
-        }
-
-        public String[] getDefinedRepositories() throws Exception {
-            if (repositories == null) {
-                loadRepositories();
-            }
-            return repositories.toArray(new String[repositories.size()]);
-        }
-
-        private void loadRepositories() throws IOException {
-            try {
-                repositories = new ArrayList<String>();
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                Document doc = factory.newDocumentBuilder().parse(uri.toURL().openStream());
-                NodeList nodes = doc.getDocumentElement().getChildNodes();
-                for (int i = 0; i < nodes.getLength(); i++) {
-                    org.w3c.dom.Node node = nodes.item(i);
-                    if (!(node instanceof Element) || !"repository".equals(node.getNodeName())) {
-                        continue;
-                    }
-                    Element e = (Element) nodes.item(i);
-                    repositories.add(e.getTextContent().trim());
-                }
-            } catch (SAXException e) {
-                throw (IOException) new IOException().initCause(e);
-            } catch (ParserConfigurationException e) {
-                throw (IOException) new IOException().initCause(e);
-            }
-        }
-
-        private void loadFeatures() throws IOException {
-            try {
-                features = new ArrayList<Feature>();
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                Document doc = factory.newDocumentBuilder().parse(uri.toURL().openStream());
-                NodeList nodes = doc.getDocumentElement().getChildNodes();
-                for (int i = 0; i < nodes.getLength(); i++) {
-                    org.w3c.dom.Node node = nodes.item(i);
-                    if (!(node instanceof Element) || !"feature".equals(node.getNodeName())) {
-                        continue;
-                    }
-                    Element e = (Element) nodes.item(i);
-                    String name = e.getAttribute("name");
-                    String version = e.getAttribute("version");
-                    Feature f = new Feature(name);
-                    f.setVersion(version);
-                    NodeList featureNodes = e.getElementsByTagName("feature");
-                    for (int j = 0; j < featureNodes.getLength(); j++) {
-                        Element b = (Element) featureNodes.item(j);
-                        f.addDependency(b.getTextContent());
-                    }
-                    NodeList configNodes = e.getElementsByTagName("config");
-                    for (int j = 0; j < configNodes.getLength(); j++) {
-                        Element c = (Element) configNodes.item(j);
-                        String cfgName = c.getAttribute("name");
-                        String data = c.getTextContent();
-                        Properties properties = new Properties();
-                        properties.load(new ByteArrayInputStream(data.getBytes()));
-                        Map<String, String> hashtable = new Hashtable<String, String>();
-                        for (Object key : properties.keySet()) {
-                            String n = key.toString();
-                            hashtable.put(n, properties.getProperty(n));
-                        }
-                        f.addConfig(cfgName, hashtable);
-                    }
-                    NodeList configFileNodes = e.getElementsByTagName("configfile");
-                    for (int j = 0; j < configFileNodes.getLength(); j++) {
-                        Element c = (Element) configFileNodes.item(j);
-                        f.addConfigFile(c.getTextContent());
-                    }
-                    NodeList bundleNodes = e.getElementsByTagName("bundle");
-                    for (int j = 0; j < bundleNodes.getLength(); j++) {
-                        Element b = (Element) bundleNodes.item(j);
-                        f.addBundle(b.getTextContent());
-                    }
-                    features.add(f);
-                }
-            } catch (SAXException e) {
-                throw (IOException) new IOException().initCause(e);
-            } catch (ParserConfigurationException e) {
-                throw (IOException) new IOException().initCause(e);
-            }
-        }
-
-    }
 }

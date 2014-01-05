@@ -24,6 +24,7 @@ import org.apache.karaf.features.Feature;
 import org.apache.karaf.features.Repository;
 import org.apache.karaf.features.internal.FeatureValidationUtil;
 import org.apache.karaf.features.internal.RepositoryImpl;
+import org.apache.karaf.tooling.url.CustomBundleURLStreamHandlerFactory;
 import org.apache.karaf.tooling.utils.MojoSupport;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.repository.ArtifactRepository;
@@ -59,7 +60,7 @@ import static org.apache.karaf.tooling.features.ManifestUtils.*;
  * @inheritByDefault true
  * @description Validates the features XML file
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings("deprecation")
 public class ValidateDescriptorMojo extends MojoSupport {
 
     private static final String MVN_URI_PREFIX = "mvn:";
@@ -68,6 +69,7 @@ public class ValidateDescriptorMojo extends MojoSupport {
     private static final String KARAF_CORE_STANDARD_FEATURE_URL = "mvn:org.apache.karaf.features/standard/%s/xml/features";
     private static final String KARAF_CORE_ENTERPRISE_FEATURE_URL = "mvn:org.apache.karaf.features/enterprise/%s/xml/features";
 
+    private static boolean isCustomStreamURLHandlerSet;
     /**
      * The dependency tree builder to use.
      *
@@ -192,7 +194,12 @@ public class ValidateDescriptorMojo extends MojoSupport {
      */
     private void prepare() throws Exception {
         info("== Preparing for validation ==");
-        URL.setURLStreamHandlerFactory(new CustomBundleURLStreamHandlerFactory());
+        if (!isCustomStreamURLHandlerSet) {
+            //URL.setURLStreamHandlerFactory can be called at most once in a given Java Virtual
+            //Machine, so set a flag to avoid calling this method multiple times
+            URL.setURLStreamHandlerFactory(new CustomBundleURLStreamHandlerFactory());
+            isCustomStreamURLHandlerSet = true;
+        }
         info(" - getting list of system bundle exports");
         readSystemPackages();
         info(" - getting list of provided bundle exports");
@@ -510,7 +517,6 @@ public class ValidateDescriptorMojo extends MojoSupport {
      */
     private Manifest getManifest(String bundle, Object artifact) throws ArtifactResolutionException, ArtifactNotFoundException,
             ZipException, IOException {
-        ZipFile file = null;
         if (!(artifact instanceof Artifact)) {
             //not resolved as mvn artifact, so it's non-mvn protocol, just use the CustomBundleURLStreamHandlerFactory
             // to open stream
@@ -528,14 +534,13 @@ public class ValidateDescriptorMojo extends MojoSupport {
                 if (m == null) {
                     throw new IOException("Manifest not present in the first entry of the zip");
                 }
-
+                silentClose(jar);
                 return m;
             } finally {
-                if (is != null) { // just in case when we did not open bundle
-                    is.close();
-                }
+            	silentClose(is);
             }
         } else {
+        	ZipFile file = null;
             Artifact mvnArtifact = (Artifact) artifact;
             File localFile = new File(localRepo.pathOf(mvnArtifact));
             if (localFile.exists()) {

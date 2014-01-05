@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.karaf.tooling</groupId>
         <artifactId>tooling</artifactId>
-        <version>3.0.0.RC1</version>
+        <version>3.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -54,12 +54,12 @@
             <artifactId>maven-core</artifactId>
             <version>3.1.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-compat</artifactId>
             <version>3.1.0</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version>1.5.10</version>
+            <version>3.0</version>
         </dependency>
         -->
         <dependency>
