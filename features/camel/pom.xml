@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+      <groupId>com.github.livesense</groupId>
+      <artifactId>org.liveSense.features</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+  </parent>
+  
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.liveSense.features.camel</artifactId>
+	<packaging>pom</packaging>
+
+	<version>2.12.2_1-SNAPSHOT</version>
+	<name>liveSense :: Features :: Camel</name>
+	<description>liveSense Camel features</description>
+
+    <properties>
+        <feature-file>apache-camel-2.12.2-features.xml</feature-file>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+        
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
+
+
+
+
+
+
+
+
+
+

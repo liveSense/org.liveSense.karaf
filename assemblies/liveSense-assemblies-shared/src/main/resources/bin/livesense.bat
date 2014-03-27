@@ -319,6 +319,9 @@ if "%KARAF_PROFILER%" == "" goto :RUN
     goto :RUN_LOOP
 
 :EXECUTE
+	if not exist "%KARAF_HOME%\data" (
+    	call :warn The application was never started. Downloading artifacts, it can takes several minutes...
+	)
     SET ARGS=%1 %2 %3 %4 %5 %6 %7 %8
     rem Execute the Java Virtual Machine
     cd "%KARAF_BASE%"

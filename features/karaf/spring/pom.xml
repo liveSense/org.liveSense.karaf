@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+      <groupId>com.github.livesense</groupId>
+      <artifactId>org.liveSense.features.karaf</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+  </parent>
+  
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.liveSense.features.karaf.spring</artifactId>
+	<packaging>pom</packaging>
+
+	<name>liveSense :: Features :: Karaf Spring</name>
+	<description>liveSense Webconsole features</description>
+    <properties>
+        <feature-file>karaf-${karaf.version}-spring-features.xml</feature-file>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+        
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
+
+
+
+
+
+
+
+
+
+

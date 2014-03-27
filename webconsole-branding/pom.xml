@@ -21,16 +21,10 @@
     <modelVersion>4.0.0</modelVersion>
   <parent>
       <groupId>com.github.livesense</groupId>
-      <artifactId>org.liveSense.parent</artifactId>
-      <version>2-SNAPSHOT</version>
+      <artifactId>org.liveSense.karaf</artifactId>
+      <version>1.0.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
   </parent>
-  <scm>
-      <connection>scm:git:git://github.com/liveSense/org.liveSense.webconsole.branding.git</connection>
-      <developerConnection>scm:git:git://github.com/liveSense/org.liveSense.webconsole.branding.git</developerConnection>
-      <url>https://github.com/liveSense/org.liveSense.webconsole.branding</url>
-  </scm>
-
     <artifactId>org.liveSense.karaf.webconsole.branding</artifactId>
     <packaging>bundle</packaging>
     <version>1.0.1-SNAPSHOT</version>
