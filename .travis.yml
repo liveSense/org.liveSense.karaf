@@ -4,6 +4,7 @@ before_install:
   -o target/travis/settings.xml
 - curl https://raw.github.com/liveSense/all/master/maven-color -o ./maven-color
 - chmod +x ./maven-color
+install: true
 jdk:
 - openjdk6
 script:
