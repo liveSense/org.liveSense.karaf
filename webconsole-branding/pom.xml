@@ -22,12 +22,11 @@
   <parent>
       <groupId>com.github.livesense</groupId>
       <artifactId>org.liveSense.karaf</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.3-SNAPSHOT</version>
 		<relativePath>..</relativePath>
   </parent>
     <artifactId>org.liveSense.karaf.webconsole.branding</artifactId>
     <packaging>bundle</packaging>
-    <version>1.0.1-SNAPSHOT</version>
     <name>liveSense :: Webconsole :: Branding</name>
     <description>liveSense Web Console Branding for the Apache Karaf Web Console. This fragment
         attaches to the org.apache.karaf.webconsole.console bundle to provide branding

@@ -23,14 +23,13 @@
 	<parent>
 		<groupId>com.github.livesense</groupId>
 		<artifactId>org.liveSense.karaf</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.3-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
     
 	<artifactId>org.liveSense.assemblies</artifactId>
 	<packaging>pom</packaging>
 	<name>liveSense :: Assemblies</name>
-
 	<profiles>
 		<profile>
 			<id>maven-310</id>
