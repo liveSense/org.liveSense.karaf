@@ -24,7 +24,7 @@
 	<parent>
 		<groupId>com.github.livesense</groupId>
 		<artifactId>org.liveSense.assemblies</artifactId>
-		<version>1.0.3-SNAPSHOT</version>
+		<version>1.0.3</version>
 		<relativePath>..</relativePath>
 	</parent>
     
@@ -173,7 +173,7 @@
                          <feature>camel-salesforce</feature>
                          <feature>camel-saxon</feature>
                          <feature>camel-scala</feature>
-                         -->
+                         --&gt;
                         <!-- Repository error -->
                         <!--
                          <feature>camel-script-jruby</feature>
@@ -221,7 +221,7 @@
                          <feature>camel-yammer</feature>
                          <feature>camel-zipfile</feature>
                          <feature>camel-zookeeper</feature>
-                         -->
+                         --&gt;
                         <feature>cxf</feature>
                         <feature>cxf-abdera</feature>
                         <feature>cxf-bindings-coloc</feature>

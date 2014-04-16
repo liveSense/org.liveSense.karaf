@@ -29,6 +29,7 @@
     </parent>
 
     <artifactId>karaf-maven-plugin</artifactId>
+  <version>3.0.0</version>
     <packaging>maven-plugin</packaging>
     <name>Apache Karaf :: Tooling :: Maven Karaf Plugin</name>
 
@@ -209,4 +210,8 @@
         </plugins>
     </reporting>
 
+
+  <scm>
+    <tag>1.0.3</tag>
+  </scm>
 </project>
