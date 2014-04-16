@@ -31,8 +31,8 @@
     </modules>
     
     <properties>
-        <dosgi.feature.version>${liveSense.version}</dosgi.feature.version>
-        <camel.feature.version>${liveSense.version}</camel.feature.version>
+        <dosgi.feature.version>${project.version}</dosgi.feature.version>
+        <camel.feature.version>${project.version}</camel.feature.version>
         <pax.web.version>3.0.5</pax.web.version>
     </properties>
 </project>
