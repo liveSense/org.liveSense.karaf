@@ -22,9 +22,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.livesense</groupId>
-		<artifactId>org.liveSense.parent</artifactId>
+		<artifactId>org.liveSense.karaf</artifactId>
 		<version>1.0.3-SNAPSHOT</version>
-		<relativePath>../../org.liveSense.parent</relativePath>
+		<relativePath>../</relativePath>
 	</parent>
 
 	<artifactId>org.liveSense.features.sling.bootstrap</artifactId>
