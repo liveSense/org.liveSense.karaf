@@ -7,3 +7,4 @@
 /.classpath
 /nbactions.xml
 velocity.log
+/target

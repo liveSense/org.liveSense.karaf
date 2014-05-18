@@ -6,11 +6,12 @@
     <!-- infrastructure services for Sling -->
 	<feature name="sling-infrastructure" version="${liveSense.version}">
 		<feature>apache-commons</feature>
-		<feature>http</feature>
+        <feature>http</feature>
 		<feature>http-whiteboard</feature>
 		<feature>eventadmin</feature>
         <feature>scr</feature>
 		<bundle dependency="true">mvn:org.apache.felix/org.apache.felix.inventory/1.0.0</bundle>
+		<feature>apache-fileupload</feature>
 	</feature>
     
     <!-- Jcr API -->

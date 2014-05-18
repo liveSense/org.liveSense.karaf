@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
-    <!--
-     
-     Licensed to the Apache Software Foundation (ASF) under one or more
-     contributor license agreements.  See the NOTICE file distributed with
-     this work for additional information regarding copyright ownership.
-     The ASF licenses this file to You under the Apache License, Version 2.0
-     (the "License"); you may not use this file except in compliance with
-     the License.  You may obtain a copy of the License at
-     
-     http://www.apache.org/licenses/LICENSE-2.0
-     
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
-     -->
-    
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- Licensed to the Apache Software Foundation (ASF) under one or more 
+		contributor license agreements. See the NOTICE file distributed with this 
+		work for additional information regarding copyright ownership. The ASF licenses 
+		this file to You under the Apache License, Version 2.0 (the "License"); you 
+		may not use this file except in compliance with the License. You may obtain 
+		a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless 
+		required by applicable law or agreed to in writing, software distributed 
+		under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+		OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+		the specific language governing permissions and limitations under the License. -->
+
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.livesense</groupId>
@@ -26,7 +21,7 @@
 		<version>1.0.4-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-    
+
 	<artifactId>org.liveSense.assemblies</artifactId>
 	<packaging>pom</packaging>
 	<name>liveSense :: Assemblies</name>
@@ -57,739 +52,756 @@
 				<module>karaf-maven-plugin</module>
 			</modules>
 		</profile>
-     </profiles>
-    <modules>
+	</profiles>
+	<modules>
 		<module>liveSense-assemblies-shared</module>
 		<module>liveSense-assemblies-minimal</module>
-        <module>liveSense-assemblies-offline</module>
+		<module>liveSense-assemblies-offline</module>
 	</modules>
-    
-    <!-- features repositories -->
-    <dependencies>
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.karaf.framework</artifactId>
-            <type>kar</type>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.karaf.standard</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.karaf.spring</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.karaf.enterprise</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${project.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.apache.cxf.karaf</groupId>
-            <artifactId>apache-cxf</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${cxf.version}</version>
-        </dependency>
-        <!--
-         <dependency>
-         <groupId>org.apache.servicemix.nmr</groupId>
-         <artifactId>apache-servicemix-nmr</artifactId>
-         <classifier>features</classifier>
-         <type>xml</type>
-         <scope>runtime</scope>
-         <version>${servicemix.nmr.version}</version>
-         </dependency>
-         
-         <dependency>
-         <groupId>org.apache.servicemix</groupId>
-         <artifactId>apache-servicemix</artifactId>
-         <classifier>features</classifier>
-         <type>xml</type>
-         <scope>runtime</scope>
-         <version>${servicemix.version}</version>
-         </dependency>
-         -->
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.camel</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${camel.feature.version}</version>
-        </dependency>
-        
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.dosgi</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${dosgi.feature.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.commons</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${project.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.webconsole</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${project.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.features.sling</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${project.version}</version>
-        </dependency>
-        
-        <!--
-         <dependency>
-         <groupId>org.apache.activemq</groupId>
-         <artifactId>activemq-karaf</artifactId>
-         <classifier>features</classifier>
-         <type>xml</type>
-         <scope>runtime</scope>
-         <version>${activemq.version}</version>
-         </dependency>
-         -->
-        <!--
-         <dependency>
-         <groupId>com.github.livesense</groupId>
-         <artifactId>org.liveSense.features</artifactId>
-         <classifier>features</classifier>
-         <type>xml</type>
-         <scope>runtime</scope>
-         <version>${project.version}</version>
-         </dependency>
-         -->
-        <!--
-         <dependency>
-         <groupId>org.apache.karaf</groupId>
-         <artifactId>demos</artifactId>
-         <scope>provided</scope>
-         <version>${karaf.version}</version>
-         </dependency>
-         -->
-        <dependency>
-            <groupId>org.ops4j.pax.web</groupId>
-            <artifactId>pax-web-features</artifactId>
-            <version>${pax.web.version}</version>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-        </dependency>
-        
-        <!-- liveSense feature repositories -->
-        <!--
-         <dependency>
-         <groupId>com.github.livesense</groupId>
-         <artifactId>org.liveSense.core</artifactId>
-         <classifier>features</classifier>
-         <type>xml</type>
-         <scope>runtime</scope>
-         <version>${liveSense.core.version}</version>
-         </dependency>
-         -->
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.core</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.core.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.lucene</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.lucene.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.jdbc.mysql</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.jdbc.mysql.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.jdbc.jaybird</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.jdbc.jaybird.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.jdbc.h2</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.jdbc.h2.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.misc.i18n</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.misc.i18n.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.misc.jcrom</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.misc.jcrom.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.misc.queryBuilder</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.misc.queryBuilder.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.misc.configurationLoader</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.misc.configurationLoader.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.fragment.sun.misc</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.fragment.sun.misc.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.fragment.sun.security</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.fragment.sun.security.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.fragment.com.sun.image.codec.jpeg</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.fragment.com.sun.image.codec.jpeg.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.scripting.jsp.taglib.jsonatg</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.scripting.jsp.taglib.jsonatg.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.scripting.jsp.taglib.jstl</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.scripting.jsp.taglib.jstl.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.fitnesse</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.fitnesse.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.jodconverter</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.jodconverter.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.jodreports</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.jodreports.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.gwt</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.gwt.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.misc.queryBuilder.gwt</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.misc.queryBuilder.gwt.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.gxt</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.gxt.version}</version>
-    </dependency>
-    
-    <dependency>
-        <groupId>com.github.livesense</groupId>
-        <artifactId>org.liveSense.framework.lucene</artifactId>
-        <classifier>features</classifier>
-        <type>xml</type>
-        <scope>runtime</scope>
-        <version>${liveSense.framework.lucene.version}</version>
-    </dependency>
-        
-    <dependency>
-        <groupId>com.github.livesense</groupId>
-        <artifactId>org.liveSense.framework.apacheds</artifactId>
-        <classifier>features</classifier>
-        <type>xml</type>
-        <scope>runtime</scope>
-        <version>${liveSense.framework.apacheds.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.directory.jdbm</groupId>
-                    <artifactId>apacheds-jdbm2</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.jasperreports</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.jasperreports.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.solr</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.solr.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.framework.wro4j</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.framework.wro4j.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.auth.ldap</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.auth.ldap.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.solr</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.solr.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.solr.configurationLoader</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.solr.configurationLoader.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.apacheds</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.apacheds.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.directory.jdbm</groupId>
-                    <artifactId>apacheds-jdbm2</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.apacheds.configurationLoader</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.apacheds.configurationLoader.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.directory.jdbm</groupId>
-                    <artifactId>apacheds-jdbm2</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.activation</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.activation.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.captcha</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.captcha.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.dataSourceProvider</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.dataSourceProvider.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.email</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.email.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.languageSelector</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.languageSelector.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.report.jasper</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.report.jasper.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.securityManager</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.securityManager.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.thumbnailGenerator</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.thumbnailGenerator.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.xssRemove</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.xssRemove.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.cxf</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.cxf.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.gwt</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.gwt.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.markdown</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.markdown.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.guacamole</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.guacamole.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.service.jcr.importexport</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.service.jcr.importexport.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.jcr.explorer</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.jcr.explorer.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.jcr.restexplorer</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.jcr.restexplorer.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.content.initial</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.content.initial.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.sample.gwt.notes</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.sample.gwt.notes.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.sample.gwt.notesRequestFactory</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.sample.gwt.notesRequestFactory.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.sample.simplePortal</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.sample.simplePortal.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.sample.markdown</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.sample.markdown.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.sample.solr</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.sample.solr.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.sample.webServiceServlet</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.sample.webServiceServlet.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.fragment.customloginpage</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.fragment.customloginpage.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.github.livesense</groupId>
-            <artifactId>org.liveSense.fragment.jackrabbit.server.jaybird.ddl</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-            <scope>runtime</scope>
-            <version>${liveSense.fragment.jackrabbit.server.jaybird.ddl.version}</version>
-        </dependency>
-        
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-remote-resources-plugin</artifactId>
-                <configuration>
-                    <excludeTransitive>true</excludeTransitive>
-                </configuration>
-            </plugin>
-        </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>unpack-shared</id>
-                            <phase>process-resources</phase>
-                            <goals>
-                                <goal>unpack</goal>
-                            </goals>
-                            <configuration>
-                                <artifactItems>
-                                    <artifactItem>
-                                        <groupId>com.github.livesense</groupId>
-                                        <artifactId>org.liveSense.assemblies.shared</artifactId>
-                                        <version>${project.version}</version>
-                                    </artifactItem>
-                                </artifactItems>
-                                <outputDirectory>${project.build.directory}/assembly</outputDirectory>
-                                <excludes>**/META-INF/**</excludes>
-                            </configuration>
-                        </execution>
-                        
-                        <execution>
-                            <id>copy-branding</id>
-                            <phase>process-resources</phase>
-                            <goals>
-                                <goal>copy</goal>
-                            </goals>
-                            <configuration>
-                                <artifactItems>
-                                    <artifactItem>
-                                        <groupId>com.github.livesense</groupId>
-                                        <artifactId>org.liveSense.features.branding</artifactId>
-                                        <version>${project.version}</version>
-                                    </artifactItem>
-                                </artifactItems>
-                                <outputDirectory>${project.build.directory}/assembly/lib</outputDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-    
+
+	<!-- features repositories -->
+	<dependencies>
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.karaf.framework</artifactId>
+			<type>kar</type>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.karaf.standard</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.karaf.spring</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.karaf.enterprise</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf.karaf</groupId>
+			<artifactId>apache-cxf</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${cxf.version}</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.apache.servicemix.nmr</groupId> <artifactId>apache-servicemix-nmr</artifactId> 
+			<classifier>features</classifier> <type>xml</type> <scope>runtime</scope> 
+			<version>${servicemix.nmr.version}</version> </dependency> <dependency> <groupId>org.apache.servicemix</groupId> 
+			<artifactId>apache-servicemix</artifactId> <classifier>features</classifier> 
+			<type>xml</type> <scope>runtime</scope> <version>${servicemix.version}</version> 
+			</dependency> -->
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.camel</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${camel.feature.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.dosgi</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${dosgi.feature.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.commons</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.webconsole</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.features.sling</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.apache.activemq</groupId> <artifactId>activemq-karaf</artifactId> 
+			<classifier>features</classifier> <type>xml</type> <scope>runtime</scope> 
+			<version>${activemq.version}</version> </dependency> -->
+		<!-- <dependency> <groupId>com.github.livesense</groupId> <artifactId>org.liveSense.features</artifactId> 
+			<classifier>features</classifier> <type>xml</type> <scope>runtime</scope> 
+			<version>${project.version}</version> </dependency> -->
+		<!-- <dependency> <groupId>org.apache.karaf</groupId> <artifactId>demos</artifactId> 
+			<scope>provided</scope> <version>${karaf.version}</version> </dependency> -->
+		<dependency>
+			<groupId>org.ops4j.pax.web</groupId>
+			<artifactId>pax-web-features</artifactId>
+			<version>${pax.web.version}</version>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- liveSense feature repositories -->
+		<!-- <dependency> <groupId>com.github.livesense</groupId> <artifactId>org.liveSense.core</artifactId> 
+			<classifier>features</classifier> <type>xml</type> <scope>runtime</scope> 
+			<version>${liveSense.core.version}</version> </dependency> -->
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.core</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.core.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.jdbc.mysql</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.jdbc.mysql.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.jdbc.jaybird</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.jdbc.jaybird.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.jdbc.h2</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.jdbc.h2.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.queryBuilder.gwt</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.misc.queryBuilder.gwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.i18n</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.misc.i18n.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.jcrom</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.misc.jcrom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.queryBuilder</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.misc.queryBuilder.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.queryBuilder.gwt</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.misc.queryBuilder.gwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.configurationLoader</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.misc.configurationLoader.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.fragment.sun.misc</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.fragment.sun.misc.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.fragment.sun.security</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.fragment.sun.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.fragment.com.sun.image.codec.jpeg</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.fragment.com.sun.image.codec.jpeg.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.scripting.jsp.taglib.jsonatg</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.scripting.jsp.taglib.jsonatg.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.scripting.jsp.taglib.jstl</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.scripting.jsp.taglib.jstl.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.apacheds</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.apacheds.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.directory.jdbm</groupId>
+					<artifactId>apacheds-jdbm2</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.docx4j</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.docx4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.dom4j</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.dom4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.fitnesse</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.fitnesse.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.gxt</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.gxt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.gwt</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.gwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.itext</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.itext.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.jasperreports</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.jasperreports.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.jodconverter</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.jodconverter.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.jodreports</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.jodreports.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.lucene</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.lucene.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.odfdom</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.odfdom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.poi</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.poi.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.solr</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.solr.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.wro4j</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.wro4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.framework.xdocreport</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.framework.xdocreport.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.auth.ldap</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.auth.ldap.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.solr</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.solr.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.solr.configurationLoader</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.solr.configurationLoader.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.apacheds</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.apacheds.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.directory.jdbm</groupId>
+					<artifactId>apacheds-jdbm2</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.apacheds.configurationLoader</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.apacheds.configurationLoader.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.directory.jdbm</groupId>
+					<artifactId>apacheds-jdbm2</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.activation</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.activation.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.captcha</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.captcha.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.dataSourceProvider</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.dataSourceProvider.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.email</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.email.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.languageSelector</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.languageSelector.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.report.jasper</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.report.jasper.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.securityManager</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.securityManager.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.thumbnailGenerator</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.thumbnailGenerator.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.xssRemove</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.xssRemove.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.cxf</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.gwt</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.gwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.markdown</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.markdown.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.guacamole</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.guacamole.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.service.jcr.importexport</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.service.jcr.importexport.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.jcr.explorer</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.jcr.explorer.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.jcr.restexplorer</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.jcr.restexplorer.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.content.initial</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.content.initial.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.sample.gwt.notes</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.sample.gwt.notes.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.sample.gwt.notesRequestFactory</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.sample.gwt.notesRequestFactory.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.sample.simplePortal</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.sample.simplePortal.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.sample.markdown</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.sample.markdown.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.sample.solr</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.sample.solr.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.sample.webServiceServlet</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.sample.webServiceServlet.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.fragment.customloginpage</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.fragment.customloginpage.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.fragment.jackrabbit.server.jaybird.ddl</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.fragment.jackrabbit.server.jaybird.ddl.version}</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-remote-resources-plugin</artifactId>
+				<configuration>
+					<excludeTransitive>true</excludeTransitive>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>unpack-shared</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>unpack</goal>
+							</goals>
+							<configuration>
+								<artifactItems>
+									<artifactItem>
+										<groupId>com.github.livesense</groupId>
+										<artifactId>org.liveSense.assemblies.shared</artifactId>
+										<version>${project.version}</version>
+									</artifactItem>
+								</artifactItems>
+								<outputDirectory>${project.build.directory}/assembly</outputDirectory>
+								<excludes>**/META-INF/**</excludes>
+							</configuration>
+						</execution>
+
+						<execution>
+							<id>copy-branding</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>copy</goal>
+							</goals>
+							<configuration>
+								<artifactItems>
+									<artifactItem>
+										<groupId>com.github.livesense</groupId>
+										<artifactId>org.liveSense.features.branding</artifactId>
+										<version>${project.version}</version>
+									</artifactItem>
+								</artifactItems>
+								<outputDirectory>${project.build.directory}/assembly/lib</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
 </project>
