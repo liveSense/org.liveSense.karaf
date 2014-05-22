@@ -1,82 +1,107 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
-    <parent>
-        <groupId>com.github.livesense</groupId>
-        <artifactId>org.liveSense.karaf</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.github.livesense</groupId>
+		<artifactId>org.liveSense.karaf</artifactId>
+		<version>1.0.4-SNAPSHOT</version>
 		<relativePath>..</relativePath>
-    </parent>
+	</parent>
 	<modelVersion>4.0.0</modelVersion>
-    
+
 	<artifactId>org.liveSense.features</artifactId>
 	<packaging>pom</packaging>
-    
+
 	<name>liveSense :: Features</name>
 	<description>liveSense features</description>
-    <modules>
-        <module>karaf</module>
-        <module>camel</module>
-        <module>dosgi</module>
-        <module>commons</module>
-        <module>sling</module>
-        <module>webconsole</module>
-    </modules>
-    
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- Karaf Features installation  -->
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>copy-resources</id>
-                            <phase>process-sources</phase>
-                            <goals>
-                                <goal>copy-resources</goal>
-                            </goals>
-                            <configuration>
-                                <outputDirectory>${basedir}/target</outputDirectory>
-                                <resources>
-                                    <resource>
-                                        <directory>src/main/resources</directory>
-                                        <includes>
-                                            <include>${feature-file}</include>
-                                        </includes>
-                                        <filtering>true</filtering>
-                                    </resource>
-                                </resources>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>attach-artifacts</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>attach-artifact</goal>
-                            </goals>
-                            <configuration>
-                                <artifacts>
-                                    <artifact>
-                                        <file>target/${feature-file}</file>
-                                        <type>xml</type>
-                                        <classifier>features</classifier>
-                                    </artifact>
-                                </artifacts>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+	<modules>
+		<module>karaf</module>
+		<module>camel</module>
+		<module>dosgi</module>
+		<module>commons</module>
+		<module>sling</module>
+		<module>webconsole</module>
+	</modules>
+	
+	<properties>
+        <feature-file>karaf-${karaf.version}-spring-features.xml</feature-file>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-artifacts</id>
+							<phase>package</phase>
+							<goals>
+								<goal>attach-artifact</goal>
+							</goals>
+							<configuration>
+								<artifacts>
+									<artifact>
+										<file>target/${feature-file}</file>
+										<type>xml</type>
+										<classifier>features</classifier>
+									</artifact>
+								</artifacts>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<profiles>
+		<profile>
+			<id>copy-feature</id>
+			
+			<activation>
+				<file>
+					<exists>src/main/feature</exists>
+				</file>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-feature-resources</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${basedir}/target</outputDirectory>
+									<resources>
+										<resource>
+											<directory>src/main/feature</directory>
+											<includes>
+												<include>${feature-file}</include>
+											</includes>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
 
 

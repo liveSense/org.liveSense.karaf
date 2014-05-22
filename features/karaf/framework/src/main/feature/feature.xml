@@ -16,14 +16,13 @@
       See the License for the specific language governing permissions and
       limitations under the License.
 -->
-<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="framework-${karaf.version}">
+<features name="framework-${karaf.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
 
     <!-- This file is not used in the assembly., This file is used by the karaf-maven-plugin to generate a "final" feature.xml
               including the correct start-level for the generation of the startup.propertie file -->
 
     <feature version="${karaf.version}" description="Karaf core feature" name="framework">
         <bundle start="true" start-level="5">mvn:org.ops4j.base/ops4j-base-lang/${pax.base.version}</bundle>
-        <bundle start="true" start-level="5">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.junit/${junit3.bundle.version}</bundle>
         <bundle start="true" start-level="5">mvn:biz.aQute.bnd/bndlib/${bndlib.version}</bundle>
         <bundle start="true" start-level="5">mvn:org.ops4j.pax.swissbox/pax-swissbox-bnd/${pax.swissbox.version}</bundle>
         <bundle start="true" start-level="5">mvn:org.ops4j.pax.url/pax-url-maven-commons/${pax.url.version}</bundle>

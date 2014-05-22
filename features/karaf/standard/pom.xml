@@ -21,19 +21,6 @@
         <feature-file>karaf-${karaf.version}-standard-features.xml</feature-file>
     </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-            </plugin>
-        
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
 
 
