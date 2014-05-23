@@ -48,7 +48,7 @@
 		<bundle>mvn:org.apache.sling/org.apache.sling.commons.threads/${sling.commons.threads.version}</bundle>
         <!-- Apache Sling Launchpad -->
 		<bundle>mvn:org.apache.sling/org.apache.sling.launchpad.api/${sling.launchpad.api.version}</bundle>
-		<bundle>mvn:com.github.livesense/org.liveSense.features.sling.bootstrap/${liveSense.version}</bundle>
+		<bundle>mvn:com.github.livesense/org.liveSense.features.sling.bootstrap/${project.version}</bundle>
 
         <!-- json -->
 		<bundle dependency="true">mvn:org.apache.geronimo.bundles/json/20090211_1</bundle>
