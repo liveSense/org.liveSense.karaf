@@ -3,7 +3,7 @@
 <features name="webconsole" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0">
     <feature name="webconsole" description="liveSense WebConsole for administration and monitoring" version="${project.version}">
         <config name="org.apache.karaf.webconsole">
-            realm=liveSense
+            realm=karaf
         </config>
         <feature>http</feature>
         <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.metatype/1.0.8</bundle>
