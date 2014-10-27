@@ -212,6 +212,15 @@
 
 		<dependency>
 			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.jcrWrapper</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.misc.jcrWrapper.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
 			<artifactId>org.liveSense.misc.queryBuilder</artifactId>
 			<classifier>features</classifier>
 			<type>xml</type>
@@ -227,6 +236,15 @@
 			<type>xml</type>
 			<scope>runtime</scope>
 			<version>${liveSense.misc.queryBuilder.gwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.misc.sessionManager</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.misc.sessionManager.version}</version>
 		</dependency>
 
 		<dependency>
@@ -890,6 +908,16 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-
+		<repository>
+			<id>restlet</id>
+			<name>restlet</name>
+			<url>http://maven.restlet.com/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 </project>

@@ -343,8 +343,10 @@
 						<feature>liveSense-misc-configurationLoader</feature>
 						<feature>liveSense-misc-i18n</feature>
 						<feature>liveSense-misc-jcrom</feature>
+						<feature>liveSense-misc-jcrWrapper</feature>
 						<feature>liveSense-misc-queryBuilder</feature>
 						<feature>liveSense-misc-queryBuilder-gwt</feature>
+						<feature>liveSense-misc-sessionManager</feature>
 						<feature>liveSense-sample-gwt-notes</feature>
 						<feature>liveSense-sample-markdown</feature>
 						<feature>liveSense-sample-simplePortal</feature>
@@ -421,8 +423,6 @@
 						<feature>sling-webconsole</feature>
 						<feature>liveSense-core-base</feature>
 					</bootFeatures>
-					<startupFeature>
-					</startupFeature>
 				</configuration>
 			</plugin>
 		</plugins>
