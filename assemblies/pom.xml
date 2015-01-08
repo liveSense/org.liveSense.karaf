@@ -436,6 +436,15 @@
 
 		<dependency>
 			<groupId>com.github.livesense</groupId>
+			<artifactId>org.liveSense.servlet.solr</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+			<version>${liveSense.servlet.solr.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.livesense</groupId>
 			<artifactId>org.liveSense.framework.wro4j</artifactId>
 			<classifier>features</classifier>
 			<type>xml</type>
